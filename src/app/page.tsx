@@ -8,9 +8,6 @@ import Loading from "@/componentes/Loading";
 import Salvar from "@/componentes/Adicionar";
 
 export default function Home() {
-  return (
-    <>
-    </>
 
     const[produtos, setProdutos] = useState([]);
     let[isLoading, setIsLoading] = useState(true)
