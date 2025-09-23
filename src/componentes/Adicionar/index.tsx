@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function Salvar() {
     const [mostrarForm, setMostrarForm] = useState(false);
     const [nome, setNome] = useState('');
-    const [fotourl, setFoto] = useState('');
+    const [fotoUrl, setFoto] = useState('');
     const [preco, setPreco] = useState('');
 
     function mostrarFormulario() {
@@ -20,7 +20,7 @@ export default function Salvar() {
             await axios.post("https://produtos-server.onrender.com/api/produtos",
                 {
                     nome,
-                    fotourl,
+                    fotoUrl,
                     preco: Number(preco)
                 },
                 {
@@ -39,7 +39,7 @@ export default function Salvar() {
             {mostrarForm ? (
                 <form className="text" onSubmit={cadastrar}>
                     <Textfield label="Produto" type="text" onChange={setNome} text={nome}/>
-                    <Textfield label="Imagem" type="text" onChange={setFoto} text={fotourl}/>
+                    <Textfield label="Imagem" type="text" onChange={setFoto} text={fotoUrl}/>
                     <Textfield label="Preço" type="text" onChange={setPreco} text={preco}/>
                     <button type="submit">Salvar</button>
                 </form>
