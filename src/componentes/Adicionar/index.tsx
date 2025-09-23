@@ -14,10 +14,10 @@ export default function Salvar() {
     function mostrarFormulario() {
         setMostrarForm(true);
     }
-
-    function cadastrar(){
+    async function cadastrar(e: React.FormEvent) {
+        e.preventDefault();
         try {
-            const response = axios.post("https://produtos-server.onrender.com/api/produtos",
+            await axios.post("https://produtos-server.onrender.com/api/produtos",
                 {
                     nome,
                     fotourl,
@@ -38,9 +38,9 @@ export default function Salvar() {
         <>
             {mostrarForm ? (
                 <form className="text" onSubmit={cadastrar}>
-                    <Textfield label="Produto" type="text" onChange={setNome} />
-                    <Textfield label="Imagem" type="text" onChange={setFoto} />
-                    <Textfield label="Preço" type="text" onChange={setPreco} />
+                    <Textfield label="Produto" type="text" onChange={setNome} text={nome}/>
+                    <Textfield label="Imagem" type="text" onChange={setFoto} text={fotourl}/>
+                    <Textfield label="Preço" type="text" onChange={setPreco} text={preco}/>
                     <button type="submit">Salvar</button>
                 </form>
             ) : (
