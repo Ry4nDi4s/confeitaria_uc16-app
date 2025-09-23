@@ -1,0 +1,35 @@
+h1{
+    text-align: center;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    font-size: 30px;
+}
+
+.fundo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1e1e1e;
+    width: 240px;
+    padding: 15px;
+    margin: 0px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.posicao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav{
+    font-size: 30px;
+}
