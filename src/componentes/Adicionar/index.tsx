@@ -8,19 +8,19 @@ import { useState } from "react";
 export default function Salvar() {
     const [mostrarForm, setMostrarForm] = useState(false);
     const [nome, setNome] = useState('');
-    const [fotourl, setFoto] = useState('');
+    const [fotoUrl, setFoto] = useState('');
     const [preco, setPreco] = useState('');
 
     function mostrarFormulario() {
         setMostrarForm(true);
     }
-
-    function cadastrar(){
+    async function cadastrar(e: React.FormEvent) {
+        e.preventDefault();
         try {
-            const response = axios.post("https://produtos-server.onrender.com/api/produtos",
+            await axios.post("https://produtos-server.onrender.com/api/produtos",
                 {
                     nome,
-                    fotourl,
+                    fotoUrl,
                     preco: Number(preco)
                 },
                 {
@@ -38,9 +38,9 @@ export default function Salvar() {
         <>
             {mostrarForm ? (
                 <form className="text" onSubmit={cadastrar}>
-                    <Textfield label="Produto" type="text" onChange={setNome} />
-                    <Textfield label="Imagem" type="text" onChange={setFoto} />
-                    <Textfield label="Preço" type="text" onChange={setPreco} />
+                    <Textfield label="Produto" type="text" onChange={setNome} text={nome}/>
+                    <Textfield label="Imagem" type="text" onChange={setFoto} text={fotoUrl}/>
+                    <Textfield label="Preço" type="text" onChange={setPreco} text={preco}/>
                     <button type="submit">Salvar</button>
                 </form>
             ) : (
