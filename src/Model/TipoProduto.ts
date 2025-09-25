@@ -1,6 +1,6 @@
 type Produto = {
     id?: number;
-    fotourl: string | Blob | undefined;
+    fotoUrl: string | Blob | undefined;
     nome: string;
     preco: number;
 }
