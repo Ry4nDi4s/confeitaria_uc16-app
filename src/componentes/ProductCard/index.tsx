@@ -9,7 +9,7 @@ export default function ProductCard({produto}: Props){
         <>
         <li className="produto">
             <span className='nome'>{produto.nome}</span>
-            <img className="foto" src={produto.fotourl} style={{width: 256, height:"auto"}}/>
+            <img className="foto" src={produto.fotourl} alt={produto.nome} style={{ width: 256, height: "auto" }}/>
             <span className='preco'>R$:{produto.preco}</span>
         </li>
         </>
