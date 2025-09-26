@@ -1,6 +1,5 @@
 import Produto from "@/Model/TipoProduto";
 import ProductCard from "../ProductCard"; 
-import produtos from "@/Model/ModelProdutos";
 
 type Props = {
     produtos: Produto[]
