@@ -2,10 +2,14 @@
 
 import "@/componentes/Adicionar/styles.css";
 import Textfield from "@/componentes/TextField/page";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 
-export default function Salvar() {
+type Props = {
+    onSuccess(): void
+}
+
+export default function Salvar(props: Props) {
     const [mostrarForm, setMostrarForm] = useState(false);
     const [nome, setNome] = useState('');
     const [fotoUrl, setFoto] = useState('');
@@ -14,24 +18,30 @@ export default function Salvar() {
     function mostrarFormulario() {
         setMostrarForm(true);
     }
-    async function cadastrar(e: React.FormEvent) {
-        e.preventDefault();
-        try {
-            await axios.post("https://produtos-server.onrender.com/api/produtos",
-                {
-                    nome,
-                    fotoUrl,
-                    preco: Number(preco)
-                },
-                {
-                    headers: { 'Content-Type': 'application/json' }
-                }
-            );
-            alert("Produto enviado com sucesso!");
-        } catch (error) {
-            console.error("Erro ao enviar:", error);
+
+    function sucesso() {
+        alert("Produto enviado com sucesso!");
+        props.onSuccess();
+    }
+
+    function falha(error: AxiosError) {
+        console.error("Erro ao enviar:", error);
             alert("Erro ao enviar o produto.");
-        }
+    }
+
+    function cadastrar(e: React.FormEvent) {
+        e.preventDefault();
+        axios.post("https://produtos-server.onrender.com/api/produtos",
+            {
+                nome,
+                fotoUrl,
+                preco: Number(preco)
+            },
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+        ).then(sucesso)
+        .catch(falha);
     }
     return (
         <>

@@ -6,6 +6,7 @@ import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import Loading from "@/componentes/Loading";
 import Salvar from "@/componentes/Adicionar";
+import Contador from "@/componentes/Contador";
 
 export default function Home() {
 
@@ -32,7 +33,8 @@ export default function Home() {
     {(isLoading) && (<Loading/>)}
     <h1>Bem-Vindo(a) ao Mercadinho</h1>
     <ProductList produtos={produtos}/>
-    <Salvar/>
+    <Salvar onSuccess={loadProdutos}/>
+    <Contador />
     </>
   );
 }
