@@ -5,7 +5,7 @@ export default function Logo(){
     return(
         <>
         <span className="img">
-            <Image src="/images/mercado.jpeg" alt="logo do mercadinho" fill style={{objectFit: "contain"}}/>
+            <Image src="/images/logo.jpeg" alt="logo do mercadinho" fill style={{objectFit: "contain"}}/>
         </span>
         </>
     )
