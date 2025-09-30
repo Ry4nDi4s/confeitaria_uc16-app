@@ -15,7 +15,7 @@ export default function Home() {
     
     function loadProdutos(){
     setIsLoading(true);
-    axios.get("https://produtos-server.onrender.com/api/produtos")
+    axios.get("http://localhost:3000")
     .then(function (response: AxiosResponse){
       setProdutos(response.data)
     })
