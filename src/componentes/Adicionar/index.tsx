@@ -35,7 +35,11 @@ export default function Salvar(props: Props) {
             {
                 nome,
                 fotoUrl,
-                preco: Number(preco)
+                preco: Number(preco),
+                description,
+                quantify,
+                stock,
+                maturity: new Date(maturity)     
             },
             {
                 headers: { 'Content-Type': 'application/json' }
