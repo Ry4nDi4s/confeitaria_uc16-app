@@ -6,8 +6,8 @@ export default function Menu(){
         <>
         <nav className={styles.menu}>
         <Link href="/">Sobre nós</Link>
-
-
+        <Link href="/contato" target="_blank">Contato</Link>
+        <Link href="/">Relatório</Link>
         </nav>
         </>
     );
