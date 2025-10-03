@@ -1,3 +1,5 @@
 .menu{
-    display: flex;
+    background-color: white;
+    color: black;
+    border: 10px;
 }

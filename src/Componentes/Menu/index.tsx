@@ -6,6 +6,7 @@ export default function Menu(){
         <>
         <nav className={styles.menu}>
         <Link href="/">Sobre nós</Link>
+        
         </nav>
         </>
     );
