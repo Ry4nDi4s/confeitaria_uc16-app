@@ -1,15 +1,10 @@
-.menu{
-    display: flex;
-}
-
 .barraPesquisa {
     display: flex;
     align-items: center;
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px;
     width: 300px;
+    background-color:pink;
 }
 
 .campoPesquisa {
@@ -34,12 +29,4 @@
 
 .botaoPesquisa:hover {
     background-color: #0056b3;
-}
-
-.menu {
-    font-size: 40px;
-    display: flex;
-    gap: 50px;
-    text-decoration: none;
-    justify-content: space-between;
 }
