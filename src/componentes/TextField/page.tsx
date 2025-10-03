@@ -4,7 +4,7 @@ import { useState } from "react";
 
 type Props ={
     label: string;
-    type: "text" | "email";
+    type: "text" | "email" ;
     multiline?: boolean;
     onChange?(texto: string): void; 
     text?: string

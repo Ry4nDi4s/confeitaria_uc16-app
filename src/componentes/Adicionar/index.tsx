@@ -2,11 +2,13 @@
 
 import "@/componentes/Adicionar/styles.css";
 import Textfield from "@/componentes/TextField/page";
+import { ProductPayload } from "@/Model/ProductPayload";
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
-
 type Props = {
     onSuccess(): void
+    onSubmit?(payload: ProductPayload): void
+
 }
 
 export default function Salvar(props: Props) {
@@ -14,6 +16,11 @@ export default function Salvar(props: Props) {
     const [nome, setNome] = useState('');
     const [fotoUrl, setFoto] = useState('');
     const [preco, setPreco] = useState('');
+    const [description, setdes] = useState('');
+    const [quantify, setquanty] = useState('');
+    const [stock, setstock] = useState('');
+    const [maturity, setmaturity] = useState('');
+    
 
     function mostrarFormulario() {
         setMostrarForm(true);
@@ -31,18 +38,21 @@ export default function Salvar(props: Props) {
 
     function cadastrar(e: React.FormEvent) {
         e.preventDefault();
-        axios.post("https://produtos-server.onrender.com/api/produtos",
+        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoicnlhbnRpNDNAZ21haWwuY29tIiwibmFtZSI6IlJ5YW4iLCJpYXQiOjE3NTkzNDkxNDksImV4cCI6MTc1OTM3Nzk0OX0.q_CQv4FxI4-WnZ_KyKW7c4e_E0A9NsFgHSKRfEU9qrQ"
+        axios.post("http://localhost:3000/products",
             {
                 nome,
                 fotoUrl,
                 preco: Number(preco),
                 description,
-                quantify,
-                stock,
-                maturity: new Date(maturity)     
+                quantify: Number(quantify),
+                stock: Number(quantify),
+                maturity  
             },
             {
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json', 
+                    'Authorization': `Bearer ${token}`
+                }
             }
         ).then(sucesso)
         .catch(falha);
@@ -54,6 +64,10 @@ export default function Salvar(props: Props) {
                     <Textfield label="Produto" type="text" onChange={setNome} text={nome}/>
                     <Textfield label="Imagem" type="text" onChange={setFoto} text={fotoUrl}/>
                     <Textfield label="Preço" type="text" onChange={setPreco} text={preco}/>
+                    <Textfield label="Descrição" type="text" onChange={setdes} text={description}/>
+                    <Textfield label="Quantidade" type="text" onChange={setquanty} text={quantify}/>
+                    <Textfield label="Armazem" type="text" onChange={setstock} text={stock}/>
+                    <Textfield label="Validade" type="text" onChange={setmaturity} text={maturity}/>
                     <button type="submit">Salvar</button>
                 </form>
             ) : (
