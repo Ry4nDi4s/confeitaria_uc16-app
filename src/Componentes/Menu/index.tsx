@@ -10,6 +10,7 @@ export default function Menu(){
         <button className={styles.botaoPesquisa}>Pesquisar</button>
         </div>
         <Link href="/">Sobre nós</Link>
+        <Link href="/contato" target="_blank">Contato</Link>
         </nav>
         </>
     );

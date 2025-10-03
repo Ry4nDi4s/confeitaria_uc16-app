@@ -35,3 +35,11 @@
 .botaoPesquisa:hover {
     background-color: #0056b3;
 }
+
+.menu {
+    font-size: 40px;
+    display: flex;
+    gap: 50px;
+    text-decoration: none;
+    justify-content: space-between;
+}
