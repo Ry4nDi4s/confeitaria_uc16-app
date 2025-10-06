@@ -1,12 +1,13 @@
-import Header from "@/Componentes/Header";
-import Header2 from "@/Componentes/Header2";
 import "./page.css"
+import Header from "@/Componentes/Header";
 
 export default function Home() {
     return(
     <>
+    <div className={styles.pagina}>
     <Header/>
-    
+    <Banner/>
+    </div>
     </>
   );
 }
