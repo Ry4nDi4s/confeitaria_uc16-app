@@ -15,7 +15,6 @@ export default function Banner() {
         <div className="carousel-item active" data-bs-interval="3000">
           <img src="/images/banner/Banner - 1.png" className="d-block w-100" alt="Slide 1" />
           <div className="carousel-caption d-none d-md-block">
-
           </div>
         </div>
         <div className="carousel-item" data-bs-interval="3000">
