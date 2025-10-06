@@ -15,6 +15,7 @@ export default function Banner() {
         <div className="carousel-item active" data-bs-interval="3000">
           <img src="/images/banner/Banner - 1.png" className="d-block w-100" alt="Slide 1" />
           <div className="carousel-caption d-none d-md-block">
+
           </div>
         </div>
         <div className="carousel-item" data-bs-interval="3000">
@@ -28,14 +29,8 @@ export default function Banner() {
           </div>
         </div>
       </div>
-      <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Anterior</span>
-      </button>
-      <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Próximo</span>
-      </button>
+      <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev"></button>
+      <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next"></button>
     </div>
   );
 }
