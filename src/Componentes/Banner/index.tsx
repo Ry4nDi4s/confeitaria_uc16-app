@@ -1,32 +1,24 @@
 import Carousel from 'react-bootstrap/Carousel';
+import ExampleCarouselImage from './tipo';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Banner1 from '@/Componentes/Banner/ImgBanner/Banner1.png';
+import Banner2 from '@/Componentes/Banner/ImgBanner/Banner2.png';
+import Banner3 from '@/Componentes/Banner/ImgBanner/Banner3.png';
 
 export default function Banner() {
   return (
     <Carousel>
       <Carousel.Item interval={1000}>
-        <ExampleCarouselImage text="First slide" />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
+        <ExampleCarouselImage src={Banner1.src} alt={''} />
       </Carousel.Item>
       <Carousel.Item interval={500}>
-        <ExampleCarouselImage text="Second slide" />
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
+        <ExampleCarouselImage src={Banner2.src} alt={''} />
       </Carousel.Item>
       <Carousel.Item>
-        <ExampleCarouselImage text="Third slide" />
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
+        <ExampleCarouselImage src={Banner3.src} alt={''} />
       </Carousel.Item>
     </Carousel>
   );
 }
+
