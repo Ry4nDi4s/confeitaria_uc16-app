@@ -1,7 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
 import ExampleCarouselImage from './tipo';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Banner1 from '@/Componentes/Banner/ImgBanner/Banner1.png';
 import Banner2 from '@/Componentes/Banner/ImgBanner/Banner2.png';
 import Banner3 from '@/Componentes/Banner/ImgBanner/Banner3.png';
