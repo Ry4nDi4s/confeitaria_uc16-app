@@ -1,34 +1,11 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #808080; /* cinza padrão */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .loadingText {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ffffff; /* branco */
-    letter-spacing: 2px;
-    position: relative;
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-  
-  /* Animação suave */
-  @keyframes pulse {
-    0% {
-      opacity: 0.4;
-      transform: scale(0.98);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    100% {
-      opacity: 0.4;
-      transform: scale(0.98);
-    }
-  }
-  
+div.Loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff9;
+  flex-direction: column;
+  align-content: center;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}

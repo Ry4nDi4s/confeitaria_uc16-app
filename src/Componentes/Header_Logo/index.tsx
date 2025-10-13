@@ -8,5 +8,5 @@ export default function Logo(){
             <Image src="/Imagens/Logo/Logo.png" alt="Dani Bolos & Doces" fill style={{objectFit: "contain"}}/>
         </span>
         </>
-    )
+    );
 }

@@ -1,11 +1,11 @@
-import React from 'react';
-import styles from './styles.module.css';
- 
+import "@/componentes/Loading/style.css"
+
 export default function Loading() {
-  return (
-    <div className={styles.container}>
-      <p className={styles.loadingText}>Carregando...</p>
-    </div>
-  );
-};
- 
+return(
+        <>
+        <div className="Loading">
+        <span className="carregar">Carregando...</ span>
+        </div>
+        </>
+    )
+}
