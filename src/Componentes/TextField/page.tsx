@@ -30,7 +30,6 @@ export default function Textfield(props: Props){
     <label className="label">
         {props.label}:
         {(props.multiline)?(<textarea onChange={handleTextAreaChange} placeholder={props.label} value={texto}/>):(<input type={props.type} placeholder={props.label} value={texto} onChange={handleChange}/>)}
-    {texto}
     </label>
     </>
    );

@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Banner() {
   return (
-      <Carousel fade>
+      <Carousel>
         <Carousel.Item className={styles.banner}>
           <Image src="/Imagens/ImgBanner/Banner1.png" alt='' fill style={{objectFit: "contain"}}/>
         </Carousel.Item>

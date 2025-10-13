@@ -1,9 +1,9 @@
-import "@/componentes/Loading/style.css"
+import styles from "./styles.module.css"
 
 export default function Loading() {
 return(
         <>
-        <div className="Loading">
+        <div className={styles.Loading}>
         <span className="carregar">Carregando...</ span>
         </div>
         </>
