@@ -5,7 +5,6 @@ import Rodapé from "@/Componentes/Rodapé";
 import ListaProdutos from "@/Componentes/Lista_Produtos";
 import Banner from "@/Componentes/Banner";
 import Loading from "@/Componentes/Loading";
-import Salvar from "@/Componentes/Adicionar";
 import ProductList from "@/Componentes/ProductList";
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";

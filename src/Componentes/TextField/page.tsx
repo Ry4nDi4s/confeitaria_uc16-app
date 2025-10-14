@@ -24,7 +24,6 @@ export default function Textfield(props: Props){
             props.onChange(e.target.value);
         }
     };
-
     return(
     <>
     <label className="label">
