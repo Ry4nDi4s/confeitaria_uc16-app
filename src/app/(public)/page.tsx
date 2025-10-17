@@ -6,10 +6,10 @@ import ListaProdutos from "@/Componentes/Lista_Produtos";
 import Banner from "@/Componentes/Banner";
 import Loading from "@/Componentes/Loading";
 import ProductList from "@/Componentes/ProductList";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import styles from "./styles.module.css";
 import "./page.module.css"
+import api from "@/services/api";
 
 export default function Home() {
   const[produtos, setProdutos] = useState([]);
@@ -17,7 +17,7 @@ export default function Home() {
   
   function loadProdutos(){
   setIsLoading(true);
-  axios.get("http://localhost:3000/products")
+  api.get("/products")
   .then(function (response: AxiosResponse){
     setProdutos(response.data)
   })
@@ -31,14 +31,12 @@ export default function Home() {
   useEffect(loadProdutos, []);
     return(
     <>
-    <div className={styles.pagina}>
     <Header/>
     <Banner/>
     <ListaProdutos/>
     <Rodapé/>
     {(isLoading) && (<Loading/>)}
     <ProductList produtos={produtos}/>
-    </div>
     </>
   );
 }
