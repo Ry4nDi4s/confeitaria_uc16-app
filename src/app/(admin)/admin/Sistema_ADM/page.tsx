@@ -9,8 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 
 export default function SistemaPage() {
-    const[produtos, setProdutos] = useState([]);
-    let[isLoading, setIsLoading] = useState(true)
+    const [produtos, setProdutos] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
     
     function loadProdutos(){
     setIsLoading(true);
