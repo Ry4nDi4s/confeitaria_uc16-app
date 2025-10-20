@@ -12,8 +12,8 @@ import "./page.module.css"
 import api from "@/services/api";
 
 export default function Home() {
-  const[produtos, setProdutos] = useState([]);
-  let[isLoading, setIsLoading] = useState(true)
+  const [produtos, setProdutos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
   
   function loadProdutos(){
   setIsLoading(true);
@@ -40,5 +40,3 @@ export default function Home() {
     </>
   );
 }
-
-// Usar o Axios no projeto
