@@ -1,5 +1,5 @@
-import IconCart from "../../../public/Icons/IconCart";
-import IconPerson from "../../../public/Icons/IconPerson";
+import IconCart from "../../../../public/Icons/IconCart";
+import IconPerson from "../../../../public/Icons/IconPerson";
 import Pesquisa from "../Barra_Busca";
 
 import Logo from "../Header_Logo";

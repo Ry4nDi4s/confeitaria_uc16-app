@@ -1,7 +1,7 @@
 'use client'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header_Admin from './Header_Admin';
+import Header_Admin from '../../../Componentes/admin/Header_Admin';
 
 
 export default function HomePage() {

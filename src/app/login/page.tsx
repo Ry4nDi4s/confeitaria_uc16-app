@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hoocks/useAuth';
-import TextField from '@/Componentes/TextField';
+import TextField from '@/Componentes/public/TextField';
 
 
 export default function LoginPage() {

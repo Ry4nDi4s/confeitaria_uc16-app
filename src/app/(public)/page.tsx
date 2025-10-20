@@ -1,11 +1,11 @@
 'use client'
 
-import Header from "@/Componentes/Header";
-import Rodapé from "@/Componentes/Rodapé";
+import Header from "@/Componentes/public/Header";
+import Rodapé from "@/Componentes/public/Rodapé";
 import ListaProdutos from "@/Componentes/Lista_Produtos";
-import Banner from "@/Componentes/Banner";
-import Loading from "@/Componentes/Loading";
-import ProductList from "@/Componentes/ProductList";
+import Banner from "@/Componentes/public/Banner";
+import Loading from "@/Componentes/public/Loading";
+import ProductList from "@/Componentes/public/ProductList";
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import "./page.css"

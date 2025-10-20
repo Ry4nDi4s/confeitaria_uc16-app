@@ -1,7 +1,7 @@
 "use client";
 
 import "@/componentes/Adicionar/styles.css";
-import Textfield from "@/Componentes/TextField/index";
+import Textfield from "@/Componentes/public/TextField/index";
 import api from "@/services/api";
 import { AxiosError } from "axios";
 import { useState } from "react";

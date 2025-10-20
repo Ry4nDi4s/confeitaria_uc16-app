@@ -1,9 +1,9 @@
 'use client'
 
-import Salvar from '@/Componentes/Adicionar';
+import Salvar from '@/Componentes/admin/Adicionar';
 import ListaProdutos from '@/Componentes/Lista_Produtos';
-import Loading from '@/Componentes/Loading';
-import ProductList from '@/Componentes/ProductList';
+import Loading from '@/Componentes/public/Loading';
+import ProductList from '@/Componentes/public/ProductList';
 import axios, { AxiosResponse } from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';

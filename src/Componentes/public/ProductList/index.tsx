@@ -8,7 +8,7 @@ type Props = {
 
 export default function ProductList({ produtos }: Props) {
     return (
-        <ul className={styles.produto}>
+        <ul className={styles.produtos}>
             {produtos.map(function (produto: Produto) {
                 return (
                         <ProductCard
