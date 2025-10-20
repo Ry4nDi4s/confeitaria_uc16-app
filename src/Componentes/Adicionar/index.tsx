@@ -1,8 +1,9 @@
 "use client";
 
 import "@/componentes/Adicionar/styles.css";
-import Textfield from "@/Componentes/TextField/page";
-import axios, { AxiosError } from "axios";
+import Textfield from "@/Componentes/TextField/index";
+import api from "@/services/api";
+import { AxiosError } from "axios";
 import { useState } from "react";
 
 type Props = {
@@ -36,7 +37,8 @@ export default function Salvar(props: Props) {
 
     function cadastrar(e: React.FormEvent) {
         e.preventDefault();
-        axios.post("http://localhost:3000/products",
+        // adicionar https://confeitaria-uc16.onrender.com
+        api.post("/products",
             {
                 name,
                 foto,
@@ -46,9 +48,6 @@ export default function Salvar(props: Props) {
                 stock: Number(stock),
                 maturity
             },
-            {
-                headers: { 'Content-Type': 'application/json' }
-            }
         ).then(sucesso)
         .catch(falha);
     }

@@ -5,10 +5,10 @@ import styles from "./styles.module.css";
 export default function Rodapé() {
     return(
         <>
-            <header className={styles.header2}>
+            <footer className={styles.footer}>
                 <Logo2/>
                 <Links/>
-            </header>
+            </footer>
         </>
     );
 }
