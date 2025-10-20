@@ -8,7 +8,8 @@ import Loading from "@/Componentes/Loading";
 import ProductList from "@/Componentes/ProductList";
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import "./page.module.css"
+import "./page.css"
+
 import api from "@/services/api";
 
 export default function Home() {

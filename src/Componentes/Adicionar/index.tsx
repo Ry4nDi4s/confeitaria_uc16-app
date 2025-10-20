@@ -55,7 +55,7 @@ export default function Salvar(props: Props) {
         <>
             {mostrarForm ? (
                 <form className="text" onSubmit={cadastrar}>
-                    <Textfield label="Produto" type="text" onChange={setNome} text={name}/>
+                    <Textfield label="Produto1" type="text" onChange={setNome} text={name}/>
                     <Textfield label="Imagem" type="text" onChange={setFoto} text={foto}/>
                     <Textfield label="Preço" type="text" onChange={setPreco} text={preco}/>
                     <Textfield label="description" type="text" onChange={setDescription} text={description}/>

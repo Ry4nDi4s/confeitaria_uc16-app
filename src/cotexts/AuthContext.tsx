@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useState, ReactNode } from "react";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 import api from "@/services/api";
 
 type JwtPayload = {
