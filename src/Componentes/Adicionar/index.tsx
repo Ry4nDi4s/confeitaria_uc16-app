@@ -55,13 +55,13 @@ export default function Salvar(props: Props) {
         <>
             {mostrarForm ? (
                 <form className="text" onSubmit={cadastrar}>
-                    <Textfield label="Produto1" type="text" onChange={setNome} text={name}/>
+                    <Textfield label="Produto" type="text" onChange={setNome} text={name}/>
                     <Textfield label="Imagem" type="text" onChange={setFoto} text={foto}/>
                     <Textfield label="Preço" type="text" onChange={setPreco} text={preco}/>
-                    <Textfield label="description" type="text" onChange={setDescription} text={description}/>
-                    <Textfield label="quantify" type="text" onChange={setQuantify} text={quantify}/>
-                    <Textfield label="stock" type="text" onChange={setStock} text={stock}/>
-                    <Textfield label="maturity" type="text" onChange={setmaturity} text={maturity}/>
+                    <Textfield label="Description" type="text" onChange={setDescription} text={description}/>
+                    <Textfield label="Quantify" type="text" onChange={setQuantify} text={quantify}/>
+                    <Textfield label="Stock" type="text" onChange={setStock} text={stock}/>
+                    <Textfield label="Maturity" type="text" onChange={setmaturity} text={maturity}/>
                     <button type="submit">Salvar</button>
                 </form>
             ) : (
