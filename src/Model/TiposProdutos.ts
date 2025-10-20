@@ -4,7 +4,7 @@ type Produto = {
     nome: ReactNode;
     id?: number;
     name: string;
-    foto: string | Blob | undefined;
+    foto: string;
     preco: number;
     description: string;
     quantify: number;
