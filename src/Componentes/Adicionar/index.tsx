@@ -1,6 +1,6 @@
 "use client";
 
-import "./styles.css";
+import "@/componentes/Adicionar/styles.css";
 import Textfield from "@/Componentes/TextField/page";
 import api from "@/services/api";
 import { AxiosError } from "axios";
