@@ -1,7 +1,4 @@
-import { ReactNode } from "react";
-
 type Produto = {
-    nome: ReactNode;
     id?: number;
     name: string;
     foto: string;
@@ -9,7 +6,7 @@ type Produto = {
     description: string;
     quantify: number;
     stock: number;
-    maturity: Date
+    maturity: number;
 }
 
 export default Produto;

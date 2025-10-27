@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hoocks/useAuth';
 import TextField from '@/Componentes/public/TextField';
+import styles from './styles.module.css'
 
-
-export default function LoginPage() {
+export default function LoginAdmPage() {
   const auth = useAuth();
   const router = useRouter();
 
@@ -20,9 +20,9 @@ export default function LoginPage() {
   }
 
   return (
-    <main style={{ maxWidth: 400, margin: '40px auto' }}>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    <main  style={{ maxWidth: 400, margin: '40px auto' }}>
+      <h1 style={{textAlign:"center"}}>Login</h1>
+      <form className={styles.login}onSubmit={handleSubmit}>
         <TextField
           label="E-mail"
           type="email"
@@ -39,7 +39,7 @@ export default function LoginPage() {
           required
           autoComplete="current-password"
         />
-        <button type="submit">Entrar</button>
+        <button style={{ margin: '3%', marginLeft: '40%'}} type="submit" >Entrar</button>
       </form>
     </main>
   );

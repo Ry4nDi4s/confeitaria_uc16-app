@@ -1,6 +1,6 @@
 .header {
     display: flex;
     justify-content: space-between;
-    background-color: pink;
+    background-color: #EDE2E2;
     align-items: center;
 }

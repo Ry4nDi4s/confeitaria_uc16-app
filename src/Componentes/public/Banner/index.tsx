@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Banner() {
   return (
-      <Carousel indicators={false} interval={5000} prevIcon={<Image src="/Imagens/ImgBanner/Seta Esquerda.png" alt='' fill style={{objectFit: "none"}}/>} nextIcon={<Image src="/Imagens/ImgBanner/Seta Direita.png" alt='' fill style={{objectFit: "none"}}/>}>
+      <Carousel indicators={false} interval={5000} prevIcon={<Image src="/Imagens/Setas/Seta Esquerda.png" alt='' fill style={{objectFit: "none"}}/>} nextIcon={<Image src="/Imagens/Setas/Seta Direita.png" alt='' fill style={{objectFit: "none"}}/>}>
         <Carousel.Item className={styles.banner}>
           <Image src="/Imagens/ImgBanner/Banner1.png" alt='' fill style={{objectFit: "cover"}}/>
         </Carousel.Item>

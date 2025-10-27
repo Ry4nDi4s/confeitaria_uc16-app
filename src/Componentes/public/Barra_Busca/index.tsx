@@ -1,14 +1,25 @@
-import styles from "./styles.module.css";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-export default function Pesquisa() {
+function Buscar() {
   return (
-    <div className={styles.barraPesquisa}>
-      <input
-        type="text"
-        className={styles.campoPesquisa}
-        placeholder="Buscar..."
-      />
-      <span className={styles.iconeLupa}><svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.7211 18L10.4211 11.7C9.92109 12.1 9.34609 12.4167 8.69609 12.65C8.04609 12.8833 7.35443 13 6.62109 13C4.80443 13 3.26693 12.3708 2.00859 11.1125C0.75026 9.85417 0.121094 8.31667 0.121094 6.5C0.121094 4.68333 0.75026 3.14583 2.00859 1.8875C3.26693 0.629167 4.80443 0 6.62109 0C8.43776 0 9.97526 0.629167 11.2336 1.8875C12.4919 3.14583 13.1211 4.68333 13.1211 6.5C13.1211 7.23333 13.0044 7.925 12.7711 8.575C12.5378 9.225 12.2211 9.8 11.8211 10.3L18.1211 16.6L16.7211 18ZM6.62109 11C7.87109 11 8.93359 10.5625 9.80859 9.6875C10.6836 8.8125 11.1211 7.75 11.1211 6.5C11.1211 5.25 10.6836 4.1875 9.80859 3.3125C8.93359 2.4375 7.87109 2 6.62109 2C5.37109 2 4.30859 2.4375 3.43359 3.3125C2.55859 4.1875 2.12109 5.25 2.12109 6.5C2.12109 7.75 2.55859 8.8125 3.43359 9.6875C4.30859 10.5625 5.37109 11 6.62109 11Z" fill="#49454F"/></svg></span>
-    </div>
+      <Form >
+        <Row>
+          <Col xs="auto">
+            <Form.Control
+              type="text"
+              placeholder="Pesquisar"
+              className=" me-2"
+            />
+          </Col>
+          <Col xs="auto">
+            <Button variant='info' type="submit">Buscar</Button>
+          </Col>
+        </Row>
+      </Form>
   );
 }
+
+export default Buscar;
