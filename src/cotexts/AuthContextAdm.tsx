@@ -18,7 +18,7 @@ type User = {
 
 type AuthContextType = {
   user: User | null;
-  login(email: string, password: string): void;
+  login(email: string, password: string): boolean;
   logout(): void;
   isAuthenticated: boolean;
 };
@@ -34,9 +34,9 @@ type Props = {
 export function AuthProvider(props: Props) {
   const [user, setUser] = useState<User | null>(null);
 
-  function login(email: string, password: string): void {
+  function login(email: string, password: string): boolean {
     api
-      .post("/user/login", { email, password })
+      .post("/users/aunt", { email, senha: password })
       .then(function (res) {
         const token = res.data.token;
         localStorage.setItem("token", token);
@@ -46,10 +46,13 @@ export function AuthProvider(props: Props) {
           name: decoded.name,
           email: decoded.email,
         });
+        return true;
       })
-      .catch(function () {
-        alert("Credenciais inválidas.");
+      .catch(function (e) {
+        console.error(e)
       });
+
+      return false;
   }
 
   function logout(): void {

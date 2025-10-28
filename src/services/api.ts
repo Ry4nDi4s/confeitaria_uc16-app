@@ -8,7 +8,9 @@ const api = axios.create({
 api.defaults.headers.post["Content-Type"] = "application/json";
 api.defaults.headers.put["Content-Type"] = "application/json";
 
-api.interceptors.request.use(function (config) {
+export const apiAuth = api.create();
+
+apiAuth.interceptors.request.use(function (config) {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = " Bearer " + token;
@@ -17,14 +19,14 @@ api.interceptors.request.use(function (config) {
 });
 
 // Se a resposta for 401, faz logout e redireciona
-api.interceptors.response.use(
+apiAuth.interceptors.response.use(
   function (response) {
     return response;
   },
   function (error) {
     if (error.response?.status === 401) {
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      //window.location.href = "/login";
     }
     return Promise.reject(error);
   }

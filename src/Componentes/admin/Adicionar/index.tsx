@@ -19,6 +19,7 @@ export default function Salvar(props: Props) {
     const [quantify, setQuantify] = useState('');
     const [stock, setStock] = useState('');
     const [maturity, setmaturity] = useState('');
+    const [tipo, settipo] = useState('');
 
 
     function mostrarFormulario() {
@@ -46,7 +47,8 @@ export default function Salvar(props: Props) {
                 description,
                 quantify: Number(quantify),
                 stock: Number(stock),
-                maturity
+                maturity,
+                tipo
             },
         ).then(sucesso)
         .catch(falha);
@@ -58,10 +60,11 @@ export default function Salvar(props: Props) {
                     <Textfield label="Produto" type="text" onChange={setNome} text={name}/>
                     <Textfield label="Imagem" type="text" onChange={setFoto} text={foto}/>
                     <Textfield label="Preço" type="text" onChange={setPreco} text={preco}/>
-                    <Textfield label="Description" type="text" onChange={setDescription} text={description}/>
-                    <Textfield label="Quantify" type="text" onChange={setQuantify} text={quantify}/>
+                    <Textfield label="Descrição" type="text" onChange={setDescription} text={description}/>
+                    <Textfield label="Quantidade" type="text" onChange={setQuantify} text={quantify}/>
                     <Textfield label="Stock" type="text" onChange={setStock} text={stock}/>
-                    <Textfield label="Maturity" type="text" onChange={setmaturity} text={maturity}/>
+                    <Textfield label="Validade" type="text" onChange={setmaturity} text={maturity}/>
+                    <Textfield label="Tipo" type="text" onChange={settipo} text={tipo}/>
                     <button type="submit">Salvar</button>
                 </form>
             ) : (

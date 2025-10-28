@@ -4,7 +4,7 @@ import { ChangeEvent } from "react";
 import styles from "./styles.module.css";
 
 type Props = {
-  label: string;
+  label?: string;
   type: "text" | "email" | "password";
   text: string;
   required?: boolean;

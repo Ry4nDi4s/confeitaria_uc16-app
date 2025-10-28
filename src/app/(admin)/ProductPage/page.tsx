@@ -5,6 +5,7 @@ import ProductList from "@/Componentes/admin/ProductList";
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import api from "@/services/api";
+import Salvar from "@/Componentes/admin/Adicionar";
 
 export default function Home() {
   const [produtos, setProdutos] = useState([]);
@@ -28,6 +29,7 @@ export default function Home() {
     <>
     {(isLoading) && (<Loading/>)}
     <ProductList produtos={produtos}/>
+    <Salvar onSuccess={loadProdutos}/>
     </>
   );
 }

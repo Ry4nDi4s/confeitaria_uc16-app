@@ -6,18 +6,22 @@ import { useAuth } from '@/hoocks/useAuth';
 import TextField from '@/Componentes/public/TextField';
 import styles from './styles.module.css'
 
-export default function LoginAdmPage() {
+export default function LoginUserPage() {
   const auth = useAuth();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit(e: React.FormEvent): void {
-    e.preventDefault();
-    auth.login(email, password);
-    router.push('/dashboard');
-  }
+    function handleSubmit(e: React.FormEvent): void {
+        e.preventDefault();
+
+        if (auth.login(email, password)) {
+            router.push('/');
+        } else  {
+            alert("ALERT");
+        }
+    }
 
   return (
     <main  style={{ maxWidth: 400, margin: '40px auto' }}>
