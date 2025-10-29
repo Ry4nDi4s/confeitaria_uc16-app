@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hoocks/useAuth';
 import TextField from '@/Componentes/public/TextField';
 import styles from './styles.module.css'
+import Link from 'next/link';
 
 export default function LoginUserPage() {
   const auth = useAuth();
@@ -13,22 +14,24 @@ export default function LoginUserPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-    function handleSubmit(e: React.FormEvent): void {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-
-        if (auth.login(email, password)) {
-            router.push('/');
-        } else  {
-            alert("ALERT");
+        try {
+          auth.login(email, password);
+          router.push('/');
+        }
+        catch (error) {
+          alert("ALERT");
         }
     }
 
   return (
     <main  style={{ maxWidth: 400, margin: '40px auto' }}>
-      <h1 style={{textAlign:"center"}}>Login</h1>
-      <form className={styles.login}onSubmit={handleSubmit}>
+      <form className={styles.login} onSubmit={handleSubmit}>
+      <img src={"/Imagens/Logo/Logo.png"}/>
+      <h1>Login</h1>
+      <p></p>
         <TextField
-          label="E-mail"
           type="email"
           text={email}
           onChange={setEmail}
@@ -36,14 +39,17 @@ export default function LoginUserPage() {
           autoComplete="email"
         />
         <TextField
-          label="Senha"
           type="password"
           text={password}
           onChange={setPassword}
           required
           autoComplete="current-password"
-        />
-        <button style={{ margin: '3%', marginLeft: '40%'}} type="submit" >Entrar</button>
+          />
+        <button style={{ margin: '2%', marginLeft: '2.4%'}} type="submit" >Entrar</button>
+          <hr/>
+      </form>
+      <form className={styles.cadastro} onSubmit={handleSubmit}>
+        <p>Novo aqui?</p><Link href={"/CadastroPage"}>Crie uma conta!</Link>
       </form>
     </main>
   );

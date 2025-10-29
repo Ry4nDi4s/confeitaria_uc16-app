@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import { jwtDecode } from 'jwt-decode';
 import api from "@/services/api";
+import AuthRepository from "@/repositories/auth";
 
 type JwtPayload = {
   sub: string;
@@ -18,7 +19,7 @@ type User = {
 
 type AuthContextType = {
   user: User | null;
-  login(email: string, password: string): boolean;
+  login(email: string, password: string): void;
   logout(): void;
   isAuthenticated: boolean;
 };
@@ -34,29 +35,36 @@ type Props = {
 export function AuthProvider(props: Props) {
   const [user, setUser] = useState<User | null>(null);
 
-  function login(email: string, password: string): boolean {
-    api
-      .post("/users/aunt", { email, senha: password })
-      .then(function (res) {
-        const token = res.data.token;
-        localStorage.setItem("token", token);
-        const decoded = jwtDecode<JwtPayload>(token);
-        setUser({
-          id: decoded.sub,
-          name: decoded.name,
-          email: decoded.email,
-        });
-        return true;
-      })
-      .catch(function (e) {
-        console.error(e)
-      });
+  useEffect(function () {
+    const token = AuthRepository.getToken();
+    try {
+      makeUserFromToken(token);
+    } catch (_error) {
+      AuthRepository.setToken(null);
+    }
+  }, []);
 
-      return false;
+  function makeUserFromToken(token: string | null) {
+    if (token != null) {
+      const decoded = jwtDecode<JwtPayload>(token);
+      setUser({
+        id: decoded.sub,
+        name: decoded.name,
+        email: decoded.email,
+        // Adicionar o RoleGroup
+      });
+    }
+  }
+
+  async function login(email: string, password: string) {
+    const res = await api.post("/users/aunt", { email, senha: password })
+    const token = res.data.token;
+    AuthRepository.setToken(token);
+    makeUserFromToken(token);
   }
 
   function logout(): void {
-    localStorage.removeItem("token");
+    AuthRepository.setToken(null);
     setUser(null);
   }
 

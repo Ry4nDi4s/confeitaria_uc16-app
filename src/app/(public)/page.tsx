@@ -13,8 +13,8 @@ export default function Home() {
       <Banner />
       <div className={styles.produtos}>
       <Cartões nome={"Bolos Fixos"} foto={"/Imagens/produtos/bolo1.png"} link={"/BolosFixosPage"}/>
-      <Cartões nome={"Docinhos"} foto={"/Imagens/produtos/bolo1.png"} link={"/DocinhosPage"}/>
-      <Cartões nome={"Bolos Personalizado"} foto={"/Imagens/produtos/bolo1.png"} link={"/BolosPersonalizadosPage"}/>
+      <Cartões nome={"Docinhos"} foto={"/Imagens/produtos/doce1.png"} link={"/DocinhosPage"}/>
+      <Cartões nome={"Bolo Personalizado"} foto={"/Imagens/produtos/bolo3.png"} link={"/BolosPersonalizadosPage"}/>
       </div>
       <Rodapé />
     </>

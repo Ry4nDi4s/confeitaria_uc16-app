@@ -1,3 +1,4 @@
+import AuthRepository from "@/repositories/auth";
 import axios from "axios";
 
 const api = axios.create({
@@ -6,12 +7,14 @@ const api = axios.create({
 });
 
 api.defaults.headers.post["Content-Type"] = "application/json";
+api.defaults.headers.get["Content-Type"] = "application/json";
+api.defaults.headers.delete["Content-Type"] = "application/json";
 api.defaults.headers.put["Content-Type"] = "application/json";
 
 export const apiAuth = api.create();
 
 apiAuth.interceptors.request.use(function (config) {
-  const token = localStorage.getItem("token");
+  const token = AuthRepository.getToken();
   if (token) {
     config.headers.Authorization = " Bearer " + token;
   }
@@ -25,7 +28,7 @@ apiAuth.interceptors.response.use(
   },
   function (error) {
     if (error.response?.status === 401) {
-      localStorage.removeItem("token");
+      AuthRepository.setToken(null);
       //window.location.href = "/login";
     }
     return Promise.reject(error);

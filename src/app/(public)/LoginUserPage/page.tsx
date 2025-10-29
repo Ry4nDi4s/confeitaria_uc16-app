@@ -14,13 +14,14 @@ export default function LoginUserPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-    function handleSubmit(e: React.FormEvent): void {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-
-        if (auth.login(email, password)) {
-            router.push('/');
-        } else  {
-            alert("ALERT");
+        try {
+          auth.login(email, password);
+          router.push('/');
+        }
+        catch (error) {
+          alert("ALERT");
         }
     }
 
