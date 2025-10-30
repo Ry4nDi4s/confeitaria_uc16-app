@@ -1,5 +1,7 @@
 "use client";
 
+// ADICIONAR CHECAGEM DE GRUPO DO ADMINISTRADOR
+
 import { createContext, useState, ReactNode, useEffect } from "react";
 import { jwtDecode } from 'jwt-decode';
 import api from "@/services/api";
@@ -9,17 +11,19 @@ type JwtPayload = {
   sub: string;
   name: string;
   email: string;
+  groups: string;
 };
 
 type User = {
   id: string;
   name: string;
   email: string;
+  groups: string;
 };
 
 type AuthContextType = {
   user: User | null;
-  login(email: string, password: string): void;
+  login(email: string, password: string): Promise<void>;
   logout(): void;
   isAuthenticated: boolean;
 };
@@ -39,10 +43,10 @@ export function AuthProvider(props: Props) {
     const token = AuthRepository.getToken();
     try {
       makeUserFromToken(token);
-    } catch (_error) {
+    } catch (error) {
       AuthRepository.setToken(null);
     }
-  }, []);
+  },[]);
 
   function makeUserFromToken(token: string | null) {
     if (token != null) {
@@ -51,16 +55,16 @@ export function AuthProvider(props: Props) {
         id: decoded.sub,
         name: decoded.name,
         email: decoded.email,
-        // Adicionar o RoleGroup
+        groups: decoded.groups
       });
     }
   }
 
-  async function login(email: string, password: string) {
-    const res = await api.post("/users/aunt", { email, senha: password })
-    const token = res.data.token;
-    AuthRepository.setToken(token);
-    makeUserFromToken(token);
+   async function login(email: string, password: string) {
+      const res = await api.post("/users/aunt", { email, senha: password })
+      const token = res.data.token;
+      AuthRepository.setToken(token);
+      makeUserFromToken(token);
   }
 
   function logout(): void {
@@ -69,9 +73,7 @@ export function AuthProvider(props: Props) {
   }
 
   return (
-    <AuthContext.Provider
-      value={{ user, login, logout, isAuthenticated: !!user }}
-    >
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
       {props.children}
     </AuthContext.Provider>
   );

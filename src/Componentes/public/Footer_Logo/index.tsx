@@ -1,7 +1,7 @@
 import Image from "next/image"
 import styles from "./styles.module.css"
 
-export default function Logo2(){
+export default function Footer_Logo(){
     return(
         <>
         <span className={styles.image2}>

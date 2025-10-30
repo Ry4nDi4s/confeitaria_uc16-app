@@ -1,14 +1,14 @@
 import Links from "../Links";
-import Logo2 from "../Rodapé_Logo";
+import Footer_Logo from "../Footer_Logo";
 import styles from "./styles.module.css";
 
 export default function Rodapé() {
     return(
         <>
-            <footer className={styles.footer}>
-                <Logo2/>
+            <div className={styles.footer}>
+                <Footer_Logo/>
                 <Links/>
-            </footer>
+            </div>
         </>
     );
 }

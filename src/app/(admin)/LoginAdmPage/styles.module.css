@@ -20,19 +20,3 @@ body{
     width: 172px;
     background-color: greenyellow;
 }
-
-.login hr{
-    width: 300px;
-}
-
-.cadastro{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-.cadastro a{
-    text-decoration: none;
-}

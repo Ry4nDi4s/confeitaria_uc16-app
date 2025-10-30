@@ -1,7 +1,7 @@
 'use client'
 
 import Header from "@/Componentes/public/Header";
-import Rodapé from "@/Componentes/public/Rodapé";
+import Rodapé from "@/Componentes/public/Footer";
 import Banner from "@/Componentes/public/Banner";
 import Cartões from "@/Componentes/public/Cartões";
 import styles from "./styles.module.css"

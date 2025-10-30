@@ -19,7 +19,7 @@ type User = {
 
 type AuthContextType = {
   user: User | null;
-  login(email: string, password: string): void;
+  login(email: string, password: string): Promise<void>;
   logout(): void;
   isAuthenticated: boolean;
 };
@@ -39,10 +39,10 @@ export function AuthProvider(props: Props) {
     const token = AuthRepository.getToken();
     try {
       makeUserFromToken(token);
-    } catch (_error) {
+    } catch (error) {
       AuthRepository.setToken(null);
     }
-  }, []);
+  },[]);
 
   function makeUserFromToken(token: string | null) {
     if (token != null) {
@@ -55,11 +55,11 @@ export function AuthProvider(props: Props) {
     }
   }
 
-  async function login(email: string, password: string) {
-    const res = await api.post("/users/aunt", { email, senha: password })
-    const token = res.data.token;
-    AuthRepository.setToken(token);
-    makeUserFromToken(token);
+   async function login(email: string, password: string) {
+      const res = await api.post("/users/aunt", { email, senha: password })
+      const token = res.data.token;
+      AuthRepository.setToken(token);
+      makeUserFromToken(token);
   }
 
   function logout(): void {
@@ -68,9 +68,7 @@ export function AuthProvider(props: Props) {
   }
 
   return (
-    <AuthContext.Provider
-      value={{ user, login, logout, isAuthenticated: !!user }}
-    >
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
       {props.children}
     </AuthContext.Provider>
   );
