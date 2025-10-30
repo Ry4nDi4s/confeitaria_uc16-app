@@ -51,6 +51,6 @@ export default function LoginUserPage() {
       <form className={styles.cadastro} onSubmit={handleSubmit}>
         <p>Novo aqui?</p><Link href={"/CadastroPage"}>Crie uma conta!</Link>
       </form>
-    </main>
+    </main> 
   );
 }
