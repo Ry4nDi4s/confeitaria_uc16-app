@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 
 type Props = {
   label?: string;
-  type: "text" | "email" | "password";
+  type: "text" | "email" | "password" | "name" | "phone" | "CPF";
   text: string;
   required?: boolean;
   autoComplete?: string;

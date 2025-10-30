@@ -1,0 +1,15 @@
+.cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 270px;
+}
+
+.cadastro img{
+    width: 100px;
+    height: 100px;
+}
+
+body{
+    background-color: pink;
+}
