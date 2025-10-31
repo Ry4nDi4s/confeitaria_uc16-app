@@ -26,6 +26,7 @@ type AuthContextType = {
   login(email: string, password: string): Promise<void>;
   logout(): void;
   isAuthenticated: boolean;
+  isAdmin: boolean;
 };
 
 export const AuthContext = createContext<AuthContextType>(
@@ -39,6 +40,8 @@ type Props = {
 export function AuthProvider(props: Props) {
   const [user, setUser] = useState<User | null>(null);
 
+  const isAdmin = user?.groups === "ADMIN" ? true : false;
+
   useEffect(function () {
     const token = AuthRepository.getToken();
     try {
@@ -46,7 +49,7 @@ export function AuthProvider(props: Props) {
     } catch (error) {
       AuthRepository.setToken(null);
     }
-  },[]);
+  }, []);
 
   function makeUserFromToken(token: string | null) {
     if (token != null) {
@@ -60,12 +63,17 @@ export function AuthProvider(props: Props) {
     }
   }
 
-   async function login(email: string, password: string) {
-      const res = await api.post("/users/aunt", { email, senha: password })
+  async function login(email: string, password: string) {
+    try{
+      const res = await api.post("/users/auntAdmin", { email, senha: password, groups: "ADMIN" });
       const token = res.data.token;
       AuthRepository.setToken(token);
       makeUserFromToken(token);
+  } catch(error){
+    console.error("Erro no login", error)
+    throw error
   }
+}
 
   function logout(): void {
     AuthRepository.setToken(null);
@@ -73,9 +81,16 @@ export function AuthProvider(props: Props) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ 
+        user, 
+        login, 
+        logout, 
+        isAuthenticated: !!user,
+        isAdmin
+    }}>
       {props.children}
     </AuthContext.Provider>
   );
+  
 }
 
