@@ -39,7 +39,7 @@ export function AuthProvider(props: Props) {
     const token = AuthRepository.getToken();
     try {
       makeUserFromToken(token);
-    } catch (error) {
+    } catch{
       AuthRepository.setToken(null);
     }
   },[]);
