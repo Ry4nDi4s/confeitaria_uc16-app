@@ -16,8 +16,8 @@ export default function ProductCardAdmin({produto}: Props){
             <span className="Quantidade">{produto.quantify}</span>
             <span className="Stock">{produto.stock}</span>
             <span className="Validade">{produto.maturity}</span>
+            <span className="Validade">{produto.tipo}</span>
         </li>
         </>
     );
 };
-
