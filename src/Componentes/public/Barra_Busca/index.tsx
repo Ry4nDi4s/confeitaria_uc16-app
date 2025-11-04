@@ -12,7 +12,7 @@ function Buscar() {
               type="text"
               placeholder="Pesquisar"
               className="me-2"
-              style={{width:400}}
+              style={{width:550}}
             />
           </Col>
           <Col xxl="auto">
