@@ -7,6 +7,7 @@ type Produto = {
     quantify: number;
     stock: number;
     maturity: number;
+    tipo: string;
 }
 
 export default Produto;

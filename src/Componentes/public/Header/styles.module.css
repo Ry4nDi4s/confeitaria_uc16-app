@@ -1,6 +1,18 @@
 .header {
     display: flex;
+    background-color: #e7dbdb;
     justify-content: space-between;
-    background-color: #EDE2E2;
     align-items: center;
+}
+
+.header .Menu{
+    display: flex;
+    margin-left: 200px;
+    gap: 30px;
+}
+
+.header .Icones{
+    display: flex;
+    gap: 40px;
+    margin-right: 20px;
 }

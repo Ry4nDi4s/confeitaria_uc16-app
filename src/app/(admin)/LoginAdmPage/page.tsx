@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hoocks/useAuth';
 import TextField from '@/Componentes/public/TextField';
 import styles from './styles.module.css'
-import Link from 'next/link';
 
 export default function LoginUserPage() {
   const auth = useAuth();
@@ -17,8 +16,8 @@ export default function LoginUserPage() {
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         try {
-          auth.login(email, password);
-          router.push('/');
+          await auth.login(email, password);
+          router.push('/Sistema');
         }
         catch (error) {
           alert("ALERT");
@@ -46,10 +45,6 @@ export default function LoginUserPage() {
           autoComplete="current-password"
           />
         <button style={{ margin: '2%', marginLeft: '2.4%'}} type="submit" >Entrar</button>
-          <hr/>
-      </form>
-      <form className={styles.cadastro} onSubmit={handleSubmit}>
-        <p>Novo aqui?</p><Link href={"/CadastroPage"}>Crie uma conta!</Link>
       </form>
     </main>
   );

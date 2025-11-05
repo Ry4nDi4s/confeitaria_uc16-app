@@ -17,7 +17,7 @@ export default function LoginUserPage() {
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         try {
-          auth.login(email, password);
+          await auth.login(email, password);
           router.push('/');
         }
         catch (error) {
