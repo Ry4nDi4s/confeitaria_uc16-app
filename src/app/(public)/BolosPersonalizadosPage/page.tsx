@@ -1,6 +1,7 @@
 function BolosPersonalizadosPage(){
     return(
         <>
+        
         </>
     );
 }
