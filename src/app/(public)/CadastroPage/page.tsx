@@ -1,60 +1,87 @@
-"use client";
+'use client';
 
-import styles from "./styles.module.css"
-import TextField from "@/Componentes/public/TextField";
-import { useState } from "react";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hoocks/useAuth';
+import TextField from '@/Componentes/public/TextField';
+import styles from './styles.module.css'
+import Link from 'next/link';
+
+export default function CadastroPage() {
+  const auth = useAuth();
+  const router = useRouter();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [CPF, setCPF] = useState('');
 
 
-export default function Cadastro() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    try {
+      router.push('/LoginUserPage');
+    }
+    catch (error) {
+      alert("ALERT");
+    }
+  }
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [phone, setPhone] = useState('');
-    const [CPF, setCPF] = useState('');
-
-    return(
-        <>
-        <form className={styles.cadastro}>
-        <img src={"/Imagens/Logo/Logo.png"}/>
-        <h1>Cadastro</h1>
+  return (
+    <main style={{ maxWidth: 400, margin: '40px auto' }}>
+      <form className={styles.fundo}><p>ㅤ</p></form>
+      <form className={styles.desing}><p>ㅤ</p></form>
+      <div className={styles.login}>
+        <p>Já possui uma conta?</p><Link href={"/LoginUserPage"}>Faça Login!</Link>
+      </div>
+      <form className={styles.cadastro} onSubmit={handleSubmit}>
         <TextField
-            type="name"
-            text={name}
-            onChange={setName}
-            required
-            autoComplete="name"
+          label='Email:'
+          type="email"
+          text={email}
+          onChange={setEmail}
+          required
+          autoComplete="email"
+        />
+
+        <TextField
+          label='Senha:'
+          type="password"
+          text={password}
+          onChange={setPassword}
+          required
+          autoComplete="current-password"
+        />
+
+        <TextField
+          label='Nome Completo:'
+          type="name"
+          text={name}
+          onChange={setName}
+          required
+          autoComplete="name"
         />
         <TextField
-            type="email"
-            text={email}
-            onChange={setEmail}
-            required
-            autoComplete="email"
+          label='Telefone:'
+          type="phone"
+          text={phone}
+          onChange={setPhone}
+          required
+          autoComplete="phone"
         />
         <TextField
-            type="password"
-            text={password}
-            onChange={setPassword}
-            required
-            autoComplete="current-password"
+          label='CPF:'
+          type="CPF"
+          text={CPF}
+          onChange={setCPF}
+          required
+          autoComplete="CPF"
         />
-        <TextField
-            type="phone"
-            text={phone}
-            onChange={setPhone}
-            required
-            autoComplete="phone"
-        />
-        <TextField
-            type="CPF"
-            text={CPF}
-            onChange={setCPF}
-            required
-            autoComplete="CPF"
-        />
-        <button>Cadastrar</button>
-        </form>
-        </>
-    );
+      <button style={{width:400, backgroundColor:"black", color:"white"}} type="submit" >Entrar</button>
+      </form>
+    </main>
+  );
 }
+
+// <button style={{ margin: '2%', marginLeft: '2.4%'}} type="submit" >Entrar</button>

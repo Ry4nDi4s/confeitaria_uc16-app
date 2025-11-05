@@ -48,7 +48,7 @@ export default function LoginUserPage() {
         <button style={{ margin: '2%', marginLeft: '2.4%'}} type="submit" >Entrar</button>
           <hr/>
       </form>
-      <form className={styles.cadastro} onSubmit={handleSubmit}>
+      <form className={styles.cadastro}>
         <p>Novo aqui?</p><Link href={"/CadastroPage"}>Crie uma conta!</Link>
       </form>
     </main> 

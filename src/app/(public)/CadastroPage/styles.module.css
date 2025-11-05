@@ -1,15 +1,36 @@
-.cadastro {
+.cadastro{
     display: flex;
     flex-direction: column;
+    position:absolute;
+    left: 70%;
+    bottom: 30%;
+    gap: 60px;
     align-items: center;
-    margin-top: 270px;
 }
 
-.cadastro img{
-    width: 100px;
-    height: 100px;
-}
-
-body{
+.fundo{
+    position:fixed;
+    left: 60%;
+    bottom: 0;
     background-color: pink;
+    height: 100%;
+    width: 100%;
+}
+
+.desing{
+    background-color: black;
+    position:fixed;
+    height: 100%;
+    width: 60%;
+    left: 0%;
+    bottom: 0;
+}
+
+.login{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    left: 88%;
+    bottom: 94%;
+    gap: 5px;
 }
