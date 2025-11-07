@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hoocks/useAuth';
+import { AxiosError } from 'axios';
+import { validarCPF, validarEmail, validarSenha, validarTelefone } from '@/validation/validar';
 import TextField from '@/Componentes/public/TextField';
-import styles from './styles.module.css'
 import Link from 'next/link';
+import api from '@/services/api';
+import styles from './styles.module.css'
 
 export default function CadastroPage() {
-  const auth = useAuth();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -17,71 +18,104 @@ export default function CadastroPage() {
   const [phone, setPhone] = useState('');
   const [CPF, setCPF] = useState('');
 
-
-  async function handleSubmit(e: React.FormEvent) {
+  function cadastrar(e: React.FormEvent) {
     e.preventDefault();
-    try {
+
+    if (!validarCPF(CPF)) {
+      alert("CPF inválido")
+      return;
+    }
+
+    if (!validarEmail(email)) {
+      alert("Email inválido")
+      return;
+    }
+    if (!validarSenha(password)) {
+      alert("Senha inválida")
+      return;
+    }
+    if (!validarTelefone(phone)) {
+      alert("Telefone inválido")
+      return;
+    }
+
+    api.post("/users",
+      {
+        email,
+        password,
+        name,
+        phone,
+        CPF
+      },
+    ).then(function () {
+      alert("Cadastro com sucesso");
       router.push('/LoginUserPage');
-    }
-    catch (error) {
-      alert("ALERT");
-    }
+    })
+      .catch(function (error: AxiosError) {
+        console.error("Erro ao enviar:", error);
+        alert("Erro no envio do cadastro.");
+      });
   }
-
   return (
-    <main style={{ maxWidth: 400, margin: '40px auto' }}>
-      <form className={styles.fundo}><p>ㅤ</p></form>
-      <form className={styles.desing}><p>ㅤ</p></form>
-      <div className={styles.login}>
-        <p>Já possui uma conta?</p><Link href={"/LoginUserPage"}>Faça Login!</Link>
+    <main>
+      <div className={styles.root}>
+        <div className={styles.painelImagem}>
+          <div className={styles.recado}>
+            <p>Crie sua conta gratuitamente</p>
+            <p>Explore os principais recursos da Confeitaria Dani!</p>
+          </div>
+          <img src={"/Imagens/Logo/Logo.png"} style={{ width: 200, height: 200 }} />
+        </div>
+        <form className={styles.painelForm} onSubmit={cadastrar}>
+          <TextField
+            label='Email:'
+            type="email"
+            text={email}
+            onChange={setEmail}
+            required
+            autoComplete="email"
+          />
+
+          <TextField
+            label='Senha:'
+            type="password"
+            text={password}
+            onChange={setPassword}
+            required
+            autoComplete="current-password"
+          />
+
+          <TextField
+            label='Nome Completo:'
+            type="name"
+            text={name}
+            onChange={setName}
+            required
+            autoComplete="name"
+          />
+
+          <TextField
+            label='Telefone:'
+            type="phone"
+            text={phone}
+            onChange={setPhone}
+            required
+            autoComplete="phone"
+          />
+          <TextField
+            label='CPF:'
+            type="text"
+            text={CPF}
+            onChange={setCPF}
+            required
+            autoComplete="CPF"
+          />
+          <button style={{ width: 300, backgroundColor: "black", color: "white" }} type="submit">Crie uma conta!</button>
+          <div className={styles.login}>
+            <p>Já possui uma conta?</p><Link href={"/LoginUserPage"}>Faça Login!</Link>
+          </div>
+        </form>
       </div>
-      <form className={styles.cadastro} onSubmit={handleSubmit}>
-        <TextField
-          label='Email:'
-          type="email"
-          text={email}
-          onChange={setEmail}
-          required
-          autoComplete="email"
-        />
-
-        <TextField
-          label='Senha:'
-          type="password"
-          text={password}
-          onChange={setPassword}
-          required
-          autoComplete="current-password"
-        />
-
-        <TextField
-          label='Nome Completo:'
-          type="name"
-          text={name}
-          onChange={setName}
-          required
-          autoComplete="name"
-        />
-        <TextField
-          label='Telefone:'
-          type="phone"
-          text={phone}
-          onChange={setPhone}
-          required
-          autoComplete="phone"
-        />
-        <TextField
-          label='CPF:'
-          type="CPF"
-          text={CPF}
-          onChange={setCPF}
-          required
-          autoComplete="CPF"
-        />
-      <button style={{width:400, backgroundColor:"black", color:"white"}} type="submit" >Entrar</button>
-      </form>
     </main>
   );
 }
-
-// <button style={{ margin: '2%', marginLeft: '2.4%'}} type="submit" >Entrar</button>
