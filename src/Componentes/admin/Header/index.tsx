@@ -6,7 +6,6 @@ export default function Header() {
         <>
             <header className={styles.header}>
                 <Logo/>
-                <button></button>                
             </header>
         </>
     )

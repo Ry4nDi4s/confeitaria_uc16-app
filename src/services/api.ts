@@ -29,7 +29,7 @@ apiAuth.interceptors.response.use(
   function (error) {
     if (error.response?.status === 401) {
       AuthRepository.setToken(null);
-      //window.location.href = "/login";
+      window.location.href = "/LoginUserPage";
     }
     return Promise.reject(error);
   }
