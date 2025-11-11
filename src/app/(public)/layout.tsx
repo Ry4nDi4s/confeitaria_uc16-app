@@ -1,4 +1,6 @@
 
+import Rodapé from '@/Componentes/public/Footer';
+import Header from '@/Componentes/public/Header';
 import { AuthProvider } from '@/cotexts/AuthContextUser';
 
 
