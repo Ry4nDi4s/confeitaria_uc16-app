@@ -4,10 +4,12 @@ import styles from "./styles.module.css"
 export default function Logo() {
     return (
         <>
-            <span className={styles.Imagem}>
+        <div className={styles.admin}>
+            <span>
                 <Image src="/Imagens/Logo/Logo.png" alt="Dani Bolos & Doces" width={100} height={100}/>
-                <h4>Administrador</h4>
             </span>
+                <h4>Administrador</h4>
+        </div>
         </>
     );
 }

@@ -30,11 +30,11 @@ export default function TextField({
 
   return (
     <span className={styles.root}>
+      {label}
       <label>
-        <span className={styles.label}>{label}:</span>
+        <span className={styles.label}></span>
         {multiline ? (
           <textarea
-            placeholder={label}
             value={text}
             onChange={handleChange}
             required={required}
@@ -42,7 +42,6 @@ export default function TextField({
         ) : (
           <input
             type={type}
-            placeholder={label}
             value={text}
             onChange={handleChange}
             required={required}

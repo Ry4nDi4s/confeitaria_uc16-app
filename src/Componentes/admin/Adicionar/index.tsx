@@ -38,7 +38,6 @@ export default function Salvar(props: Props) {
 
     function cadastrar(e: React.FormEvent) {
         e.preventDefault();
-        // adicionar https://confeitaria-uc16.onrender.com
         api.post("/products",
             {
                 name,

@@ -1,15 +1,60 @@
-.cadastro {
+body {
+    padding: 0;
+    margin: 0;
+  }
+
+.login{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.login a{
+    text-decoration: none;
+}
+
+.recado{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.root {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+.painelImagem {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    min-width: 400px;
+    justify-content: center;
     align-items: center;
-    margin-top: 270px;
+    background-color: #51C4CB;
+    gap: 30%;
 }
 
-.cadastro img{
-    width: 100px;
-    height: 100px;
-}
-
-body{
+.painelForm {
     background-color: pink;
+    flex-grow: 1;
+    gap: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 800px) {
+    .root {
+        flex-direction: row;
+    }
+
+    .painelImagem,
+    .painelForm {
+        flex-grow: 1;
+    }
 }

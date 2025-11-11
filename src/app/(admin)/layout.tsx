@@ -1,19 +1,13 @@
-'use client'
-
-import { ReactNode } from "react";
+import { AuthProvider } from '@/cotexts/AuthContextAdm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-type Props = {
-    children: ReactNode
-}
-
-export default function AdminLayout(props: Props) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             <body>
-                <main>
-                    <span>{props.children}</span>
-                </main>
+                <AuthProvider>
+                    {children}
+                </AuthProvider>
             </body>
         </html>
     );
