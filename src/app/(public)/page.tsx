@@ -1,22 +1,43 @@
-'use client'
+"use client";
 
-import Header from "@/Componentes/public/Header";
-import Rodapé from "@/Componentes/public/Footer";
 import Banner from "@/Componentes/public/Banner";
 import Cartões from "@/Componentes/public/Cartões";
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
+import { useEffect, useState } from "react";
+import Category from "@/Model/category";
+import api from "@/services/api";
 
 export default function Home() {
-    return (
+  const [categories, setCategories] = useState<Category[]>([]);
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL
+
+  useEffect(function () {
+    api
+      .get("/categories")
+      .then(function (res) {
+        setCategories(res.data);
+        console.log(res.data)
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+  }, []);
+
+  return (
     <>
-      <Header />
       <Banner />
       <div className={styles.produtos}>
-      <Cartões nome={"Bolos Fixos"} foto={"/Imagens/produtos/bolo1.png"} link={"/BolosFixosPage"}/>
-      <Cartões nome={"Docinhos"} foto={"/Imagens/produtos/doce1.png"} link={"/DocinhosPage"}/>
-      <Cartões nome={"Bolo Personalizado"} foto={"/Imagens/produtos/bolo3.png"} link={"/BolosPersonalizadosPage"}/>
+        {categories.map(function (category) {
+          const photoUrl = `${baseUrl}${category.photoUrl}`;
+          return (
+            <Cartões
+              nome={category.name}
+              foto={photoUrl}
+              link={`/cardapio/${category.slug}`}
+            />
+          );
+        })}
       </div>
-      <Rodapé />
     </>
   );
 }
