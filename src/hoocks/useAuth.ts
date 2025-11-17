@@ -1,4 +1,4 @@
-import { AuthContext } from "@/cotexts/AuthContextUser";
+import { AuthContext } from "@/cotexts/AuthContext";
 import { useContext } from "react";
 
 

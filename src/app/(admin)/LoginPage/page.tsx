@@ -14,23 +14,28 @@ export default function LoginUserPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        try {
-          await auth.login(email, password);
-          router.push('/');
-        }
-        catch (error) {
-          alert("ALERT");
-        }
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    try {
+      await auth.login(email, password);
+
+      if (!auth.isAdmin) {
+        router.push('/');
+        return;
+      }
+      router.push("/Sistema")
     }
+    catch (error) {
+      alert("ALERT");
+    }
+  }
 
   return (
-    <main  style={{ maxWidth: 400, margin: '40px auto' }}>
+    <main style={{ maxWidth: 400, margin: '40px auto' }}>
       <form className={styles.login} onSubmit={handleSubmit}>
-      <img src={"/Imagens/Logo/Logo.png"}/>
-      <h1>Login</h1>
-      <p></p>
+        <img src={"/Imagens/Logo/Logo.png"} />
+        <h1>Login</h1>
+        <p></p>
         <TextField
           type="email"
           text={email}
@@ -44,13 +49,13 @@ export default function LoginUserPage() {
           onChange={setPassword}
           required
           autoComplete="current-password"
-          />
-        <button style={{ margin: '2%', marginLeft: '2.4%'}} type="submit" >Entrar</button>
-          <hr/>
+        />
+        <button style={{ margin: '2%', marginLeft: '2.4%' }} type="submit" >Entrar</button>
+        <hr />
       </form>
       <form className={styles.cadastro}>
         <p>Novo aqui?</p><Link href={"/CadastroPage"}>Crie uma conta!</Link>
       </form>
-    </main> 
+    </main>
   );
 }
