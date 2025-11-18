@@ -1,14 +1,20 @@
 body{
     background-color: pink;
+    padding: 0;
+    margin: 0;
+}
+
+.tela{
+    position: relative;
+    top: 30vh;
 }
 
 .login{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin: 0;
-    margin-top: 270px;
+    font-weight: bold;
+    gap: 10px;
 }
 
 .login img{
@@ -17,7 +23,7 @@ body{
 }
 
 .login button{
-    width: 172px;
+    width: 150px;
     background-color: greenyellow;
 }
 
@@ -28,7 +34,6 @@ body{
 .cadastro{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
     gap: 5px;
 }

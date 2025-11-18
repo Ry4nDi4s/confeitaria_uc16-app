@@ -23,7 +23,10 @@ export default function LoginUserPage() {
         router.push('/');
         return;
       }
-      router.push("/Sistema")
+      else {
+        router.push("/Sistema")
+        return;
+      }
     }
     catch (error) {
       alert("ALERT");
@@ -31,31 +34,37 @@ export default function LoginUserPage() {
   }
 
   return (
-    <main style={{ maxWidth: 400, margin: '40px auto' }}>
-      <form className={styles.login} onSubmit={handleSubmit}>
-        <img src={"/Imagens/Logo/Logo.png"} />
-        <h1>Login</h1>
-        <p></p>
-        <TextField
-          type="email"
-          text={email}
-          onChange={setEmail}
-          required
-          autoComplete="email"
-        />
-        <TextField
-          type="password"
-          text={password}
-          onChange={setPassword}
-          required
-          autoComplete="current-password"
-        />
-        <button style={{ margin: '2%', marginLeft: '2.4%' }} type="submit" >Entrar</button>
-        <hr />
-      </form>
-      <form className={styles.cadastro}>
-        <p>Novo aqui?</p><Link href={"/CadastroPage"}>Crie uma conta!</Link>
-      </form>
+    <main>
+      <div className={styles.tela}>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.login}>
+            <img src={"/Imagens/Logo/Logo.png"} />
+            <h4>Faça Login na Confeitaria Dani!</h4>
+            <TextField
+              label='Email:'
+              type="email"
+              text={email}
+              onChange={setEmail}
+              required
+              autoComplete="email"
+            />
+            <TextField
+              label='Senha:'
+              type="password"
+              text={password}
+              onChange={setPassword}
+              required
+              autoComplete="current-password"
+            />
+            <button type="submit">Entrar</button>
+            <hr />
+          </div>
+        </form>
+        <div className={styles.cadastro}>
+          <p>Novo aqui?</p>
+          <Link href={"/CadastroPage"}>Crie uma conta!</Link>
+        </div>
+      </div>
     </main>
   );
 }

@@ -112,7 +112,7 @@ export default function CadastroPage() {
           />
           <button style={{ width: 300, backgroundColor: "black", color: "white" }} type="submit">Crie uma conta!</button>
           <div className={styles.login}>
-            <p>Já possui uma conta?</p><Link href={"/LoginUserPage"}>Faça Login!</Link>
+            <p>Já possui uma conta?</p><Link href={"/LoginUserPage"}>Entre Agora!</Link>
           </div>
         </form>
       </div>
