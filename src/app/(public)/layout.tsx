@@ -1,7 +1,7 @@
-
 import Rodapé from '@/Componentes/public/Footer';
 import Header from '@/Componentes/public/Header';
 import { AuthProvider } from '@/cotexts/AuthContextUser';
+import './globals.css';
 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
