@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hoocks/useAuthAdm';
+import { useAuth } from '@/hoocks/useAuth';
 
 export default function DashboardPage() {
   const { user, isAuthenticated, logout } = useAuth();

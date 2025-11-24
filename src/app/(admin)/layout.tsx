@@ -1,4 +1,4 @@
-import { AuthProvider } from '@/cotexts/AuthContextAdm';
+import { AuthProvider } from '@/cotexts/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

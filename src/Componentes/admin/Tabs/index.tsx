@@ -5,7 +5,7 @@ import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import api from "@/services/api";
 import Salvar from "@/Componentes/admin/Adicionar";
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 import ProductList from "@/Componentes/admin/ProductList";
 import PedidoList from '../PedidoList';
 
