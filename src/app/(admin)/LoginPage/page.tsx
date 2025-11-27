@@ -19,17 +19,15 @@ export default function LoginUserPage() {
     try {
       await auth.login(email, password);
 
-      if (!auth.isAdmin) {
-        router.push('/');
-        return;
+      const user = auth.user;
+
+      if (user && user.groups.includes("ADMIN")) {
+        router.push("/Sistema");
+      } else {
+        router.push("/");
       }
-      else {
-        router.push("/Sistema")
-        return;
-      }
-    }
-    catch (error) {
-      alert("ALERT");
+    } catch (error) {
+      alert("Erro no login");
     }
   }
 
