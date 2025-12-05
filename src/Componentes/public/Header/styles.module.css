@@ -8,7 +8,7 @@
 .header .Menu{
     display: flex;
     margin-left: 200px;
-    gap: 30px;
+    gap: 10px;
 }
 
 .header .Icones{

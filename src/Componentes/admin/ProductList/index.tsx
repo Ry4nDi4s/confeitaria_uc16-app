@@ -1,6 +1,6 @@
 import Produto from "@/Model/TiposProdutos";
-import styles from "./styles.module.css"
 import ProductCardAdmin from "@/Componentes/admin/ProductCard";
+import styles from "./styles.module.css"
 
 
 type Props = {

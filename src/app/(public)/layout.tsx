@@ -1,4 +1,3 @@
-import Rodapé from '@/Componentes/public/Footer';
 import Header from '@/Componentes/public/Header';
 import { AuthProvider } from '@/cotexts/AuthContext';
 
@@ -12,7 +11,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main>
               {children}
             </main>
-          <Rodapé />
         </AuthProvider>
       </body>
     </html>
