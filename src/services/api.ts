@@ -32,6 +32,6 @@ apiAuth.interceptors.response.use(
       window.location.href = "/LoginUserPage";
     }
     return Promise.reject(error);
-  }
+  },
 );
 export default api;

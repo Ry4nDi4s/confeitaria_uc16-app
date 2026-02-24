@@ -1,5 +1,5 @@
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import Loading from "@/Componentes/public/Loading";
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
@@ -8,118 +8,117 @@ import Salvar from "@/Componentes/admin/Adicionar";
 import styles from "./styles.module.css";
 import ProductList from "@/Componentes/admin/ProductList";
 import PedidoList from "@/Componentes/admin/PedidoList";
-import UserList from '../UsersList';
+import UserList from "../UsersList";
 
 export default function TabsSistema() {
-    return (
-        <Tabs
-            defaultActiveKey="profile"
-            className={styles.tabs}
-            justify
-        >
-            <Tab eventKey="Pedidos" title="Pedidos" >
-                <Pedidos/>
-            </Tab>
-            <Tab eventKey="Produtos" title="Produtos" >
-                <Produto />
-            </Tab>
-            <Tab eventKey="Ingredientes" title="Ingredientes" >
-                Tab content for Loooonger Tab
-            </Tab>
-            <Tab eventKey="Receitas" title="Receitas" >
-                Tab content for Contact
-            </Tab>
-            <Tab eventKey="Usuários" title="Usuários" >
-                Tab content for Contact
-            </Tab>
-        </Tabs >
-    );
+  return (
+    <Tabs defaultActiveKey="profile" className={styles.tabs} justify>
+      <Tab eventKey="Pedidos" title="Pedidos">
+        <Pedidos />
+      </Tab>
+      <Tab eventKey="Produtos" title="Produtos">
+        <Produto />
+      </Tab>
+      <Tab eventKey="Ingredientes" title="Ingredientes">
+        Tab content for Loooonger Tab
+      </Tab>
+      <Tab eventKey="Receitas" title="Receitas">
+        Tab content for Contact
+      </Tab>
+      <Tab eventKey="Usuários" title="Usuários">
+        Tab content for Contact
+      </Tab>
+    </Tabs>
+  );
 }
 
 // TAB-PRODUTOS
 
 export function Produto() {
-    const [produtos, setProdutos] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
+  const [produtos, setProdutos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    function loadProdutos() {
-        setIsLoading(true);
-        api.get("/products")
-            .then(function (response: AxiosResponse) {
-                setProdutos(response.data)
-            })
-            .catch(function () {
-                alert("Fail")
-            })
-            .finally(function () {
-                setIsLoading(false);
-            })
-    };
+  function loadProdutos() {
+    setIsLoading(true);
+    api
+      .get("/products")
+      .then(function (response: AxiosResponse) {
+        setProdutos(response.data);
+      })
+      .catch(function () {
+        alert("Fail");
+      })
+      .finally(function () {
+        setIsLoading(false);
+      });
+  }
 
-    useEffect(loadProdutos, []);
-    return (
-        <>
-            {(isLoading) && (<Loading />)}
-            <ProductList produtos={produtos} />
-            <Salvar onSuccess={loadProdutos} />
-        </>
-    );
+  useEffect(loadProdutos, []);
+  return (
+    <>
+      {isLoading && <Loading />}
+      <ProductList produtos={produtos} />
+      <Salvar onSuccess={loadProdutos} />
+    </>
+  );
 }
 
 // TAB-PEDIDOS
 
 export function Pedidos() {
-    const [pedidos, setpedido] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
+  const [pedidos, setpedido] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    function loadPedidos() {
-        setIsLoading(true);
-        api.get("/orders")
-            .then(function (response: AxiosResponse) {
-                setpedido(response.data)
-            })
-            .catch(function () {
-                alert("Fail")
-            })
-            .finally(function () {
-                setIsLoading(false);
-            })
-    };
+  function loadPedidos() {
+    setIsLoading(true);
+    api
+      .get("/orders")
+      .then(function (response: AxiosResponse) {
+        setpedido(response.data);
+      })
+      .catch(function () {
+        alert("Fail");
+      })
+      .finally(function () {
+        setIsLoading(false);
+      });
+  }
 
-    useEffect(loadPedidos, []);
-    return (
-        <>
-            {(isLoading) && (<Loading />)}
-            <PedidoList pedido={pedidos}/>
-        </>
-    );
+  useEffect(loadPedidos, []);
+  return (
+    <>
+      {isLoading && <Loading />}
+      <PedidoList pedido={pedidos} />
+    </>
+  );
 }
 
 // TAB-Users
 
 export function Tab_Users() {
-    const [users, setuser] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
+  const [users, setuser] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    function loadUsers() {
-        setIsLoading(true);
-        api.get("/users")
-            .then(function (response: AxiosResponse) {
-                setuser(response.data)
-            })
-            .catch(function () {
-                alert("Fail")
-            })
-            .finally(function () {
-                setIsLoading(false);
-            })
-    };
+  function loadUsers() {
+    setIsLoading(true);
+    api
+      .get("/users")
+      .then(function (response: AxiosResponse) {
+        setuser(response.data);
+      })
+      .catch(function () {
+        alert("Fail");
+      })
+      .finally(function () {
+        setIsLoading(false);
+      });
+  }
 
-    useEffect(loadUsers, []);
-    return (
-        <>
-            {(isLoading) && (<Loading />)}
-            <UserList users={users}/>
-        </>
-    );
+  useEffect(loadUsers, []);
+  return (
+    <>
+      {isLoading && <Loading />}
+      <UserList users={users} />
+    </>
+  );
 }

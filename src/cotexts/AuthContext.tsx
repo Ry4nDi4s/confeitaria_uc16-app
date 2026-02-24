@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useState, ReactNode, useEffect } from "react";
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import api from "@/services/api";
 import AuthRepository from "@/repositories/auth";
 
@@ -28,7 +28,7 @@ type AuthContextType = {
 };
 
 export const AuthContext = createContext<AuthContextType>(
-  {} as AuthContextType
+  {} as AuthContextType,
 );
 
 type Props = {
@@ -58,7 +58,7 @@ export function AuthProvider(props: Props) {
         email: decoded.email,
         groups: Array.isArray(decoded.groups)
           ? decoded.groups
-          : [decoded.groups]
+          : [decoded.groups],
       };
     } else {
       return null;
@@ -93,15 +93,16 @@ export function AuthProvider(props: Props) {
   }
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      login,
-      logout,
-      isAuthenticated: !!user,
-      isAdmin
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        isAuthenticated: !!user,
+        isAdmin,
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
-
 }

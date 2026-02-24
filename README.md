@@ -13,6 +13,7 @@ pnpm dev
 # or
 bun dev
 ```
+
 Para testes:
 npx next build
 

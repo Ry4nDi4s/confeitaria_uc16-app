@@ -9,14 +9,14 @@ import api from "@/services/api";
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 
   useEffect(function () {
     api
       .get("/categories")
       .then(function (res) {
         setCategories(res.data);
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch(function (error) {
         alert(error);
