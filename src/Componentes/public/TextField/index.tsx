@@ -1,6 +1,5 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
 import styles from "./styles.module.css";
 
 type Props = {
@@ -36,7 +35,6 @@ export default function TextField({
   moeda,
 }: Props) {
 
-  // Removi a primeira função handleChange que estava duplicada aqui
 
   const maskMoeda = (value: string): string => {
     const numbers = value.replace(/\D/g, "");
@@ -48,11 +46,9 @@ export default function TextField({
       .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
-  // Mantenha apenas esta versão da função
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     let val = e.target.value;
     
-    // Aplica a máscara apenas se a prop 'moeda' for true
     if (moeda) {
       val = maskMoeda(val);
     }
@@ -67,7 +63,7 @@ export default function TextField({
         {multiline ? (
           <textarea 
             value={text} 
-            onChange={handleChange} // Usa a mesma função
+            onChange={handleChange} 
             required={required} 
           />
         ) : (
