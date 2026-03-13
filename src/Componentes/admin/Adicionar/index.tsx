@@ -1,5 +1,6 @@
 "use client";
 
+import Select from "@/Componentes/public/Select";
 import "./styles.css";
 import Textfield from "@/Componentes/public/TextField/index";
 import api from "@/services/api";
@@ -63,13 +64,14 @@ export default function Salvar(props: Props) {
           />
           <Textfield
             label="Imagem"
-            type="text"
+            type="file"
             onChange={setFoto}
             text={foto}
           />
           <Textfield
             label="Preço"
             type="text"
+            moeda
             onChange={setPreco}
             text={preco}
           />
@@ -93,11 +95,13 @@ export default function Salvar(props: Props) {
           />
           <Textfield
             label="Validade"
-            type="text"
+            type="datetime-local"
             onChange={setmaturity}
             text={maturity}
           />
-          <Textfield label="Tipo" type="text" onChange={settipo} text={tipo} />
+          <Select
+          label="Categoria"
+          />
           <button type="submit">Salvar</button>
         </form>
       ) : (
