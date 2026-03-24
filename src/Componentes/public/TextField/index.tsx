@@ -2,6 +2,11 @@
 
 import styles from "./styles.module.css";
 
+type Option = {
+  label: string;
+  value: string | number;
+};
+
 type Props = {
   label?: string;
   type:
@@ -14,13 +19,15 @@ type Props = {
     | "datetime-local"
     | "checkbox"
     | "file"
-    | "number";
-  text: string;
+    | "number"
+    | "select";
+  text?: string;
   value?: string | number;
   required?: boolean;
   autoComplete?: string;
   multiline?: boolean;
   moeda?: boolean;
+  options?: Option[];
   onChange(texto: string): void;
 };
 
@@ -31,45 +38,61 @@ export default function TextField({
   required,
   autoComplete,
   multiline,
+  options,
   onChange,
   moeda,
 }: Props) {
-
-
   const maskMoeda = (value: string): string => {
     const numbers = value.replace(/\D/g, "");
     if (!numbers) return "";
-    
+
     const numericValue = (parseInt(numbers, 10) / 100).toFixed(2);
-    return "R$ " + numericValue
-      .replace(".", ",")
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return (
+      "R$ " +
+      numericValue
+        .replace(".", ",")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    );
   };
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    let val = e.target.value;
-    
-    if (moeda) {
-      val = maskMoeda(val);
-    }
-    
-    onChange(val); 
+function handleChange(
+  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+) {
+  if (type === "file") {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    onChange(file as any);
+    return;
   }
+  let val = e.target.value;
+  if (moeda) {
+    val = maskMoeda(val);
+  }
+  onChange(val);
+}
 
   return (
     <span className={styles.root}>
       {label}
       <label>
-        {multiline ? (
-          <textarea 
-            value={text} 
-            onChange={handleChange} 
-            required={required} 
+        {type === "select" ? (
+          <select value={text} onChange={handleChange} required={required}>
+            <option value="">Selecione...</option>
+            {options?.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        ) : multiline ? (
+          <textarea
+            value={text}
+            onChange={handleChange}
+            required={required}
           />
         ) : (
           <input
-            type={moeda ? "text" : type} 
-            value={text} 
+            type={moeda ? "text" : type}
+            value={text}
             onChange={handleChange}
             required={required}
             autoComplete={autoComplete}
@@ -79,4 +102,3 @@ export default function TextField({
     </span>
   );
 }
-

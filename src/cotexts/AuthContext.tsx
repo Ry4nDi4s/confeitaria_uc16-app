@@ -77,7 +77,7 @@ export function AuthProvider(props: Props) {
 
   async function login(email: string, password: string) {
     try {
-      const res = await api.post("/users/auth", { email, senha: password });
+      const res = await api.post("/users/aunt", { email, senha: password });
       const token = res.data.token;
       const u = setUserFromToken(token);
       return u;
