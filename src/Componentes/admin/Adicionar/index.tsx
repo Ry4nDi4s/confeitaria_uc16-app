@@ -20,11 +20,8 @@ export default function Salvar({ onSuccess }: Props) {
   const [stock, setStock] = useState("");
   const [maturity, setMaturity] = useState("");
   const [categoryId, setCategoryId] = useState("");
-
-  // NOVOS CAMPOS
   const [tipo, setTipo] = useState("");
   const [isActive, setIsActive] = useState(true);
-
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
