@@ -11,7 +11,7 @@ export default function DashboardPage() {
   useEffect(
     function () {
       if (!isAuthenticated) {
-        router.push("/LoginAdmPage");
+        router.push("/LoginPage");
       }
     },
     [isAuthenticated, router],
