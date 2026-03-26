@@ -1,0 +1,25 @@
+.geral {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.busca {
+  width: 300px;
+}
+
+.botao {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .geral {
+    flex-direction: row;
+  }
+  .busca {
+    width: 100%;
+  }
+  .botao {
+    margin-left: 10px;
+  }
+}
