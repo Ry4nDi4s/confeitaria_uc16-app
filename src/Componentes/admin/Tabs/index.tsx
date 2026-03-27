@@ -8,7 +8,6 @@ import Salvar from "@/Componentes/admin/Adicionar";
 import styles from "./styles.module.css";
 import ProductList from "@/Componentes/admin/ProductList";
 import PedidoList from "@/Componentes/admin/PedidoList";
-import UserList from "../UsersList";
 
 export default function TabsSistema() {
   return (
@@ -63,8 +62,6 @@ export function Produto() {
   );
 }
 
-// TAB-PEDIDOS
-
 export function Pedidos() {
   const [pedidos, setpedido] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -89,36 +86,6 @@ export function Pedidos() {
     <>
       {isLoading && <Loading />}
       <PedidoList pedido={pedidos} />
-    </>
-  );
-}
-
-// TAB-Users
-
-export function Tab_Users() {
-  const [users, setuser] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  function loadUsers() {
-    setIsLoading(true);
-    api
-      .get("/users")
-      .then(function (response: AxiosResponse) {
-        setuser(response.data);
-      })
-      .catch(function () {
-        alert("Fail");
-      })
-      .finally(function () {
-        setIsLoading(false);
-      });
-  }
-
-  useEffect(loadUsers, []);
-  return (
-    <>
-      {isLoading && <Loading />}
-      <UserList users={users} />
     </>
   );
 }
