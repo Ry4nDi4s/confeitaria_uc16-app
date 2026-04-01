@@ -56,7 +56,7 @@ export function Produto() {
   return (
     <>
       {isLoading && <Loading />}
-      <ProductList produtos={produtos} />
+      <ProductList produtos={produtos} onAtualizado={loadProdutos} />
       <Salvar onSuccess={loadProdutos} />
     </>
   );
