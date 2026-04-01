@@ -1,5 +1,5 @@
 import styles from "./styles.module.css"
-import PedidosADMIN from "@/Componentes/admin/PedidoCard";
+import PedidosCard from "@/Componentes/admin/PedidoCard";
 import Pedidos from "@/Model/TiposPedidos";
 
 
@@ -12,7 +12,7 @@ export default function PedidoList({ pedido }: Props) {
         <ul className={styles.pedido}>
             {pedido.map(function (pedido: Pedidos) {
                 return (
-                        <PedidosADMIN
+                        <PedidosCard
                             key={pedido.id}
                             pedido={pedido}
                         />

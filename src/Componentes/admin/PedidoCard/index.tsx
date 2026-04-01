@@ -15,12 +15,11 @@ function formatarDataISO(isoString: string): string {
 export default function PedidosCard({ pedido }: Props) {
   return (
     <li className={styles.pedido}>
-      <p>Pedido ID: {pedido.id}</p>
-      <p>Subtotal: R$ {pedido.subtotal.toFixed(2)}</p>
-      <p>Delivery: {pedido.Delivery ? "Sim" : "Não"}</p>
-      <p>Data de Entrega: {formatarDataISO(pedido.DeliveryDay)}</p>
-      <p>Pronto em: {formatarDataISO(pedido.ReadyAt)}</p>
-      <p>Status: {pedido.status}</p>
+      <span>{pedido.id}</span>
+      <span>{pedido.Delivery ? "Sim" : "Não"}</span>
+      <span>{pedido.ReadyAt ? formatarDataISO(pedido.ReadyAt) : ""}</span>
+      <span>{pedido.userId}</span>
+      <span>{pedido.status}</span>
     </li>
   );
 }

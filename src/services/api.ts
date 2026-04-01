@@ -1,8 +1,14 @@
 import AuthRepository from "@/repositories/auth";
 import axios from "axios";
 
+console.log(
+  "NEXT_PUBLIC_SERVER_BASE_URL: ",
+  process.env.NEXT_PUBLIC_SERVER_BASE_URL,
+);
+
 const api = axios.create({
-  baseURL: "https://confeitaria-uc16.onrender.com",
+  baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL ||
+    "https://confeitaria-uc16.onrender.com",
 });
 
 api.defaults.headers.post["Content-Type"] = "application/json";
@@ -28,7 +34,7 @@ apiAuth.interceptors.response.use(
   function (error) {
     if (error.response?.status === 401) {
       AuthRepository.setToken(null);
-      window.location.href = "/LoginUserPage";
+      window.location.href = "/LoginPage";
     }
     return Promise.reject(error);
   },
