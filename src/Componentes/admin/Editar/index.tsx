@@ -3,24 +3,31 @@
 import { useState } from "react";
 import Produto from "@/Model/TiposProdutos";
 import styles from "./styles.module.css";
+import TextField from "@/Componentes/public/TextField";
+import api from "@/services/api";
 
 type Props = {
   produto: Produto;
   onEditado?: () => void;
 };
 
+const tipoOptions = [
+  { label: "Bolo Fixo", value: "Bolo Fixo" },
+  { label: "Bolo Personalizado", value: "Bolo Personalizado" },
+  { label: "Doce", value: "Doce" },
+];
+
 export default function BotaoEditar({ produto, onEditado }: Props) {
   const [aberto, setAberto] = useState(false);
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
-  // Formulário espelha os campos do produto
   const [form, setForm] = useState({
     name: produto.name,
-    preco: produto.preco,
+    preco: String(produto.preco),
     description: produto.description,
-    quantify: produto.quantify,
-    stock: produto.stock,
+    quantify: String(produto.quantify),
+    stock: String(produto.stock),
     maturity: produto.maturity
       ? new Date(produto.maturity).toISOString().split("T")[0]
       : "",
@@ -28,38 +35,26 @@ export default function BotaoEditar({ produto, onEditado }: Props) {
     foto: produto.foto,
   });
 
-  function handleChange(
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  function set(field: string) {
+    return (value: string) => setForm((prev) => ({ ...prev, [field]: value }));
   }
 
   async function handleSalvar() {
     setCarregando(true);
     setErro(null);
-
     try {
-      const res = await fetch(`/api/produtos/${produto.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          preco: parseFloat(String(form.preco)),
-          quantify: parseInt(String(form.quantify)),
-          stock: parseInt(String(form.stock)),
-        }),
+      await api.put(`/products/${produto.id}`, {
+        ...form,
+        preco: parseFloat(
+          form.preco.replace(/[^\d,]/g, "").replace(",", ".")
+        ),
+        quantify: parseInt(form.quantify),
+        stock: parseInt(form.stock),
       });
-
-      if (!res.ok) {
-        throw new Error("Erro ao salvar as alterações.");
-      }
-
       setAberto(false);
       onEditado?.();
     } catch (e: any) {
-      setErro(e.message || "Erro desconhecido.");
+      setErro(e.response?.data?.message || "Erro ao salvar as alterações.");
     } finally {
       setCarregando(false);
     }
@@ -68,7 +63,7 @@ export default function BotaoEditar({ produto, onEditado }: Props) {
   return (
     <>
       <button className={styles.botaoEditar} onClick={() => setAberto(true)}>
-         Editar
+        Editar
       </button>
 
       {aberto && (
@@ -76,76 +71,14 @@ export default function BotaoEditar({ produto, onEditado }: Props) {
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             <h2 className={styles.titulo}>Editar produto</h2>
 
-            <div className={styles.campo}>
-              <label>Nome</label>
-              <input name="name" value={form.name} onChange={handleChange} />
-            </div>
-
-            <div className={styles.campo}>
-              <label>Preço (R$)</label>
-              <input
-                name="preco"
-                type="number"
-                step="0.01"
-                value={form.preco}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className={styles.campo}>
-              <label>Descrição</label>
-              <textarea
-                name="description"
-                value={form.description}
-                onChange={handleChange}
-                rows={3}
-              />
-            </div>
-
-            <div className={styles.campo}>
-              <label>Quantidade</label>
-              <input
-                name="quantify"
-                type="number"
-                value={form.quantify}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className={styles.campo}>
-              <label>Stock</label>
-              <input
-                name="stock"
-                type="number"
-                value={form.stock}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className={styles.campo}>
-              <label>Validade</label>
-              <input
-                name="maturity"
-                type="date"
-                value={form.maturity}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className={styles.campo}>
-              <label>Tipo</label>
-              <select name="tipo" value={form.tipo} onChange={handleChange}>
-                <option value="Bolo Fixo">Bolo Fixo</option>
-                <option value="Bolo Personalizado">Bolo Personalizado</option>
-                <option value="Doce">Doce</option>
-                {/* Adicione mais tipos conforme necessário */}
-              </select>
-            </div>
-
-            <div className={styles.campo}>
-              <label>URL da Foto</label>
-              <input name="foto" value={form.foto} onChange={handleChange} />
-            </div>
+            <TextField label="Nome" type="text" text={form.name} onChange={set("name")} />
+            <TextField label="Preço" type="number" text={form.preco} onChange={set("preco")} moeda />
+            <TextField label="Descrição" type="text" text={form.description} onChange={set("description")} multiline />
+            <TextField label="Quantidade" type="number" text={form.quantify} onChange={set("quantify")} />
+            <TextField label="Stock" type="number" text={form.stock} onChange={set("stock")} />
+            <TextField label="Validade" type="datetime-local" text={form.maturity} onChange={set("maturity")} />
+            <TextField label="Tipo" type="select" text={form.tipo} options={tipoOptions} onChange={set("tipo")} />
+            <TextField label="URL da Foto" type="text" text={form.foto} onChange={set("foto")} />
 
             {erro && <p className={styles.erro}>{erro}</p>}
 
@@ -159,10 +92,7 @@ export default function BotaoEditar({ produto, onEditado }: Props) {
               </button>
               <button
                 className={styles.botaoCancelar}
-                onClick={() => {
-                  setAberto(false);
-                  setErro(null);
-                }}
+                onClick={() => { setAberto(false); setErro(null); }}
                 disabled={carregando}
               >
                 Cancelar

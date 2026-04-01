@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "./styles.module.css";
+import api from "@/services/api";
 
 type Props = {
   produtoId: number | string;
@@ -9,11 +10,7 @@ type Props = {
   onDeletado?: () => void;
 };
 
-export default function BotaoDeletar({
-  produtoId,
-  nomeProduto,
-  onDeletado,
-}: Props) {
+export default function BotaoDeletar({ produtoId, nomeProduto, onDeletado }: Props) {
   const [confirmando, setConfirmando] = useState(false);
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
@@ -21,20 +18,12 @@ export default function BotaoDeletar({
   async function handleDeletar() {
     setCarregando(true);
     setErro(null);
-
     try {
-      const res = await fetch(`/api/produtos/${produtoId}`, {
-        method: "DELETE",
-      });
-
-      if (!res.ok) {
-        throw new Error("Erro ao deletar o produto.");
-      }
-
+      await api.delete(`/products/${produtoId}`);
       setConfirmando(false);
       onDeletado?.();
     } catch (e: any) {
-      setErro(e.message || "Erro desconhecido.");
+      setErro(e.response?.data?.message || "Erro ao deletar o produto.");
     } finally {
       setCarregando(false);
     }
@@ -57,10 +46,7 @@ export default function BotaoDeletar({
           </button>
           <button
             className={styles.botaoCancelar}
-            onClick={() => {
-              setConfirmando(false);
-              setErro(null);
-            }}
+            onClick={() => { setConfirmando(false); setErro(null); }}
             disabled={carregando}
           >
             Cancelar
@@ -71,11 +57,8 @@ export default function BotaoDeletar({
   }
 
   return (
-    <button
-      className={styles.botaoDeletar}
-      onClick={() => setConfirmando(true)}
-    >
-       Deletar
+    <button className={styles.botaoDeletar} onClick={() => setConfirmando(true)}>
+      Deletar
     </button>
   );
 }
