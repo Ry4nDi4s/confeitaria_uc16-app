@@ -68,7 +68,7 @@ export default function BotaoEditar({ produto, onEditado }: Props) {
   return (
     <>
       <button className={styles.botaoEditar} onClick={() => setAberto(true)}>
-        ✏️ Editar
+         Editar
       </button>
 
       {aberto && (

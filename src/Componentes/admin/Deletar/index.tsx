@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 type Props = {
   produtoId: number | string;
   nomeProduto: string;
-  onDeletado?: () => void; 
+  onDeletado?: () => void;
 };
 
 export default function BotaoDeletar({
@@ -32,7 +32,7 @@ export default function BotaoDeletar({
       }
 
       setConfirmando(false);
-      onDeletado?.(); 
+      onDeletado?.();
     } catch (e: any) {
       setErro(e.message || "Erro desconhecido.");
     } finally {
@@ -75,7 +75,7 @@ export default function BotaoDeletar({
       className={styles.botaoDeletar}
       onClick={() => setConfirmando(true)}
     >
-      🗑️ Deletar
+       Deletar
     </button>
   );
 }
