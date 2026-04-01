@@ -31,6 +31,7 @@ export default function Home() {
           const photoUrl = `${baseUrl}${category.photoUrl}`;
           return (
             <Cartões
+              key={category.slug}
               nome={category.name}
               foto={photoUrl}
               link={`/cardapio/${category.slug}`}

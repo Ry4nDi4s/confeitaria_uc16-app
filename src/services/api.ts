@@ -7,8 +7,8 @@ console.log(
 );
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL ||
-    "https://confeitaria-uc16.onrender.com",
+  baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL 
+  /*|| "https://confeitaria-uc16.onrender.com*/
 });
 
 api.defaults.headers.post["Content-Type"] = "application/json";
