@@ -1,6 +1,6 @@
 "use client";
 
-import "./styles.css";
+import styles from "./styles.module.css";
 import Textfield from "@/Componentes/public/TextField/index";
 import api from "@/services/api";
 import { useState, useEffect } from "react";
@@ -37,9 +37,9 @@ export default function Salvar({ onSuccess }: Props) {
   const gerarSlug = (texto: string) => {
     return texto
       .toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remover acentos
-      .replace(/[^a-z0-9]+/g, "-") // colocar hífens
-      .replace(/(^-|-$)/g, ""); // remover hífens extras
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
   };
 
   const validarCampos = () => {
@@ -82,6 +82,7 @@ export default function Salvar({ onSuccess }: Props) {
       })
       .then(() => {
         alert("Produto enviado com sucesso!");
+        setMostrarForm(false);
         onSuccess();
       })
       .catch((error) => {
@@ -92,84 +93,81 @@ export default function Salvar({ onSuccess }: Props) {
 
   return (
     <>
-      {mostrarForm ? (
-        <form className="text" onSubmit={cadastrar}>
-          <Textfield label="Produto" type="text" onChange={setNome} text={name} />
+      {/* BOTÃO FAB */}
+      <button
+        className={`${styles.fab} ${mostrarForm ? styles.fabOpen : ""}`}
+        onClick={() => setMostrarForm(!mostrarForm)}
+        title="Adicionar produto"
+      >
+        +
+      </button>
 
-          <Textfield 
-          label="Imagem (URL)" 
-          type="text" 
-          onChange={setFoto} 
-          text={foto} />
+      {/* MODAL */}
+      {mostrarForm && (
+        <div
+          className={styles.overlay}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setMostrarForm(false);
+          }}
+        >
+          <div className={styles.modal}>
+            <div className={styles.modalStripe} />
 
-          <Textfield 
-          label="Preço" 
-          type="text" 
-          moeda 
-          onChange={setPreco} 
-          text={preco} />
+            <div className={styles.modalHeader}>
+              <span className={styles.modalTitulo}>Novo Produto</span>
+              <button
+                className={styles.modalFechar}
+                onClick={() => setMostrarForm(false)}
+              >
+                ✕
+              </button>
+            </div>
 
-          <Textfield 
-          label="Descrição" 
-          type="text" 
-          onChange={setDescription} 
-          text={description} />
+            <form className={styles.form} onSubmit={cadastrar}>
+              <Textfield label="Produto" type="text" onChange={setNome} text={name} />
+              <Textfield label="Imagem (URL)" type="text" onChange={setFoto} text={foto} />
+              <Textfield label="Preço" type="text" moeda onChange={setPreco} text={preco} />
+              <Textfield label="Descrição" type="text" onChange={setDescription} text={description} />
+              <Textfield label="Quantidade" type="number" onChange={setQuantify} text={quantify} />
+              <Textfield label="Estoque" type="number" onChange={setStock} text={stock} />
+              <Textfield label="Validade" type="datetime-local" required onChange={setMaturity} text={maturity} />
+              <Textfield
+                label="Categoria"
+                type="select"
+                onChange={setCategoryId}
+                text={categoryId}
+                options={categorias.map((c: any) => ({
+                  label: c.name,
+                  value: c.id.toString(),
+                }))}
+              />
+              <Textfield
+                label="Tipo do produto"
+                type="select"
+                onChange={setTipo}
+                text={tipo}
+                options={[
+                  { label: "Bolo Fixo", value: "Bolo Fixo" },
+                  { label: "Bolo Personalizado", value: "Bolo Personalizado" },
+                  { label: "Docinhos", value: "Docinhos" },
+                ]}
+              />
 
-          <Textfield 
-          label="Quantidade" 
-          type="number" 
-          onChange={setQuantify} 
-          text={quantify} />
+              <label className={styles.checkboxRow}>
+                <input
+                  type="checkbox"
+                  checked={isActive}
+                  onChange={(e) => setIsActive(e.target.checked)}
+                />
+                Produto ativo?
+              </label>
 
-          <Textfield 
-          label="Estoque" 
-          type="number" 
-          onChange={setStock} 
-          text={stock} />
-
-          <Textfield 
-          label="Validade" 
-          type="datetime-local" 
-          required
-          onChange={setMaturity} 
-          text={maturity} />
-
-          <Textfield
-            label="Categoria"
-            type="select"
-            onChange={setCategoryId}
-            text={categoryId}
-            options={categorias.map((c: any) => ({
-              label: c.name,
-              value: c.id.toString(),
-            }))}
-          />
-
-          <Textfield
-            label="Tipo do produto"
-            type="select"
-            onChange={setTipo}
-            text={tipo}
-            options={[
-              { label: "Bolo Fixo", value: "Bolo Fixo" },
-              { label: "Bolo Personalizado", value: "Bolo Personalizado" },
-              { label: "Docinhos", value: "Docinhos" },
-            ]}
-          />
-
-          <label>
-            <input
-              type="checkbox"
-              checked={isActive}
-              onChange={(e) => setIsActive(e.target.checked)}
-            />
-            Produto ativo?
-          </label>
-
-          <button type="submit">Salvar</button>
-        </form>
-      ) : (
-        <button onClick={() => setMostrarForm(true)}>Adicionar Produtos</button>
+              <button className={styles.btnSalvar} type="submit">
+                Salvar produto
+              </button>
+            </form>
+          </div>
+        </div>
       )}
     </>
   );

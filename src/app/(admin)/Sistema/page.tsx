@@ -1,7 +1,7 @@
 'use client'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.css'
+import './styles.module.css';
 import Header from '@/Componentes/admin/Header';
 import TabsSistema from '@/Componentes/admin/Tabs';
 

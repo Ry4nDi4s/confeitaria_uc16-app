@@ -1,7 +1,29 @@
-.tabs{
-    background-color: #abcdcf;
-    border: 1px white solid;
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: bold;
+.tabs {
+  background-color: #abcdcf;
+  border-bottom: 2px solid #fff !important;
+  border-top: none !important;
+  margin-bottom: 0 !important;
+  font-family: 'Nunito', sans-serif;
+}
+
+.tabs :global(.nav-link) {
+  font-size: 15px;
+  font-weight: 800;
+  color: #085041;
+  border: none !important;
+  border-bottom: 3px solid transparent !important;
+  border-radius: 0 !important;
+  padding: 14px 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tabs :global(.nav-link:hover) {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #04342c;
+}
+
+.tabs :global(.nav-link.active) {
+  background-color: #ffffff !important;
+  color: #e91e8c !important;
+  border-bottom: 3px solid #e91e8c !important;
 }
