@@ -7,8 +7,7 @@ console.log(
 );
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL 
-  /*|| "https://confeitaria-uc16.onrender.com*/
+  baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL
 });
 
 api.defaults.headers.post["Content-Type"] = "application/json";
@@ -19,7 +18,9 @@ api.defaults.headers.put["Content-Type"] = "application/json";
 export const apiAuth = api.create();
 
 apiAuth.interceptors.request.use(function (config) {
+  console.log("TOKEN");
   const token = AuthRepository.getToken();
+  console.log("Token in request interceptor: ", token);
   if (token) {
     config.headers.Authorization = " Bearer " + token;
   }
@@ -29,9 +30,11 @@ apiAuth.interceptors.request.use(function (config) {
 // Se a resposta for 401, faz logout e redireciona
 apiAuth.interceptors.response.use(
   function (response) {
+    console.log("Response interceptor: ", response);
     return response;
   },
   function (error) {
+    console.log("Error interceptor: ", error);
     if (error.response?.status === 401) {
       AuthRepository.setToken(null);
       window.location.href = "/LoginPage";

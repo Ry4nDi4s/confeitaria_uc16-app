@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles from "./styles.module.css";
-import api from "@/services/api";
+import api, { apiAuth } from "@/services/api";
 
 type Props = {
   produtoId: number | string;
@@ -19,7 +19,7 @@ export default function BotaoDeletar({ produtoId, nomeProduto, onDeletado }: Pro
     setCarregando(true);
     setErro(null);
     try {
-      await api.delete(`/products/${produtoId}`);
+      await apiAuth.delete(`/products/${produtoId}`);
       setConfirmando(false);
       onDeletado?.();
     } catch (e: any) {

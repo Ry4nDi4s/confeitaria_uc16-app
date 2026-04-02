@@ -71,6 +71,7 @@ export function Pedidos() {
     api
       .get("/orders")
       .then(function (response: AxiosResponse) {
+        console.log(response.data);
         setpedido(response.data);
       })
       .catch(function () {

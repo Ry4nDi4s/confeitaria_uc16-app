@@ -4,7 +4,7 @@ import { useState } from "react";
 import Produto from "@/Model/TiposProdutos";
 import styles from "./styles.module.css";
 import TextField from "@/Componentes/public/TextField";
-import api from "@/services/api";
+import api, { apiAuth } from "@/services/api";
 
 type Props = {
   produto: Produto;
@@ -43,7 +43,7 @@ export default function BotaoEditar({ produto, onEditado }: Props) {
     setCarregando(true);
     setErro(null);
     try {
-      await api.put(`/products/${produto.id}`, {
+      await apiAuth.put(`/products/${produto.id}`, {
         ...form,
         preco: parseFloat(
           form.preco.replace(/[^\d,]/g, "").replace(",", ".")
