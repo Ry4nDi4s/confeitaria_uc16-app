@@ -1,7 +1,6 @@
 import Header from '@/Componentes/public/Header';
 import { AuthProvider } from '@/cotexts/AuthContext';
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-br">
