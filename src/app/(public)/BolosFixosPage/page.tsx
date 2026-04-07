@@ -29,7 +29,8 @@ export default function BolosFixosPage() {
   return (
     <>
       {isLoading && <Loading />}
-      <ProductList produtos={produtos} />
+      <ProductList produtos={produtos}
+      />
     </>
   );
 }

@@ -1,11 +1,18 @@
 import Produto from "@/Model/TiposProdutos";
 import styles from "./styles.module.css";
+import BotaoEnviar from "./BotaoEnviar";
 
 type Props = {
   produto: Produto;
+  onEnviarPedidoSucesso: () => void;
+  onEnviarPedidoFalha: () => void;
 };
 
-export default function ProductCard({ produto }: Props) {
+export default function ProductCard({
+  produto,
+  onEnviarPedidoSucesso,
+  onEnviarPedidoFalha,
+}: Props) {
   return (
     <>
       <li className={styles.produto}>
@@ -18,6 +25,11 @@ export default function ProductCard({ produto }: Props) {
         />
         <span className="preco">R$:{produto.preco}</span>
         <span className="descrição">{produto.description}</span>
+        <BotaoEnviar
+          onEnviarPedidoFalha={onEnviarPedidoFalha}
+          onEnviarPedidoSucesso={onEnviarPedidoSucesso}
+          product={produto}
+        />
       </li>
     </>
   );

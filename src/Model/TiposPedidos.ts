@@ -1,5 +1,5 @@
 type Pedidos = {
-  id: number;
+  id?: number;
   Delivery: boolean;
   subtotal: number;
   DeliveryDay?: string;
@@ -11,7 +11,7 @@ type Pedidos = {
     unitPrice: number;
   }[];
 
-  status: string;
+  status: PedidoStatus;
   userId: number;
   user?: {
     id: number;
@@ -22,5 +22,10 @@ type Pedidos = {
   };
   paymentId: number;
 };
+
+export enum PedidoStatus {
+  aguardandoPagamento = "AGUARDANDO_PAGAMENTO",
+  end = "END",
+}
 
 export default Pedidos;
