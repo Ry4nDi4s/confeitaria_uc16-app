@@ -5,23 +5,27 @@ import Pedidos, { PedidoStatus } from "@/Model/TiposPedidos";
 import Produto from "@/Model/TiposProdutos";
 import api from "@/services/api";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import styles from "./styles.module.css";
 
 type Props = {
   onEnviarPedidoSucesso: () => void;
   onEnviarPedidoFalha: () => void;
   product: Produto;
+  variant?: "azul" | "rosa";
 };
 
 export default function BotaoEnviar({
   product,
   onEnviarPedidoSucesso,
   onEnviarPedidoFalha,
+  variant = "rosa",
 }: Props) {
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const auth = useAuth();
 
   function enviarPedido() {
+    setLoading(true);
     const payment = {
       paidWithPix: true,
       paidWithMoney: false,
@@ -59,15 +63,27 @@ export default function BotaoEnviar({
               onEnviarPedidoFalha();
               console.error("ERRO AO ENVIAR Pedido:", error);
               alert("Erro ao enviar o Pedido.");
-            });
+            })
+            .finally(() => setLoading(false));
         }
       })
       .catch(function (error) {
         onEnviarPedidoFalha();
         console.error("ERRO AO CRIAR Pagamento:", error);
         alert("Erro ao criar o Pedido.");
+        setLoading(false);
       });
   }
 
-  return <Button onClick={enviarPedido}>Enviar Pedido</Button>;
+  return (
+    <button
+      className={
+        variant === "rosa" ? styles.botaoEnviarRosa : styles.botaoEnviar
+      }
+      onClick={enviarPedido}
+      disabled={loading}
+    >
+      {loading ? "Enviando..." : "Enviar Pedido"}
+    </button>
+  );
 }
