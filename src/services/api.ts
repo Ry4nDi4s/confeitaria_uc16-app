@@ -1,11 +1,6 @@
 import AuthRepository from "@/repositories/auth";
 import axios from "axios";
 
-console.log(
-  "NEXT_PUBLIC_SERVER_BASE_URL: ",
-  process.env.NEXT_PUBLIC_SERVER_BASE_URL,
-);
-
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL
 });
@@ -18,11 +13,11 @@ api.defaults.headers.put["Content-Type"] = "application/json";
 export const apiAuth = api.create();
 
 apiAuth.interceptors.request.use(function (config) {
-  console.log("TOKEN");
+  console.log("TOKEN: ", AuthRepository.getToken());
   const token = AuthRepository.getToken();
   console.log("Token in request interceptor: ", token);
   if (token) {
-    config.headers.Authorization = " Bearer " + token;
+    config.headers.Authorization = "Bearer " + token;
   }
   return config;
 });

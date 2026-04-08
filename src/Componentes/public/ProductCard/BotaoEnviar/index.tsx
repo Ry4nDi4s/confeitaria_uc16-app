@@ -34,9 +34,9 @@ export default function BotaoEnviar({
 
         if (auth.user && product.id) {
           const order: Pedidos = {
-            Delivery: true,
-            DeliveryDay: "2026-03-07",
-            ReadyAt: "2026-03-07",
+            Delivery: false,
+            DeliveryDay: null,
+            ReadyAt: "2026-04-012",
             subtotal: product.preco,
             items: [
               {

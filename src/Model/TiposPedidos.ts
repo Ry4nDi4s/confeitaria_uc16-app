@@ -2,7 +2,7 @@ type Pedidos = {
   id?: number;
   Delivery: boolean;
   subtotal: number;
-  DeliveryDay?: string;
+  DeliveryDay?: string | null;
   ReadyAt?: string;
 
   items: {
