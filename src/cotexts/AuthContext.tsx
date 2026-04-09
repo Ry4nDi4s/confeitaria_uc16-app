@@ -4,6 +4,7 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import api from "@/services/api";
 import AuthRepository from "@/repositories/auth";
+import { useRouter } from "next/navigation";
 
 type JwtPayload = {
   sub: string;
@@ -37,6 +38,7 @@ type Props = {
 
 export function AuthProvider(props: Props) {
   const [user, setUser] = useState<User | null>(null);
+  const router = useRouter();
 
   const isAdmin = user?.groups?.includes("ADMIN") ?? false;
 
@@ -76,6 +78,7 @@ export function AuthProvider(props: Props) {
   }
 
   async function login(email: string, password: string) {
+    console.log("Login called with email: ", email);
     try {
       const res = await api.post("/users/aunt", { email, senha: password });
       const token = res.data.token;
@@ -90,6 +93,7 @@ export function AuthProvider(props: Props) {
   function logout(): void {
     AuthRepository.setToken(null);
     setUser(null);
+    router.push("/Sistema");
   }
 
   return (
